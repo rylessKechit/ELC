@@ -1,129 +1,184 @@
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: transparent;
-    z-index: 1000;
-    transition: var(--transition);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  transition: var(--transition);
+  box-shadow: var(--shadow-md);
+}
+
+.header.scrolled {
+  background-color: rgba(0, 0, 0, 0.95);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  z-index: 1001; /* S'assurer que le logo reste au-dessus du menu mobile */
+}
+
+.logo {
+  height: 60px;
+  transition: var(--transition);
+}
+
+.header.scrolled .logo {
+  height: 50px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.contact-btn, .book-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-sm);
+  font-weight: 600;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.contact-btn {
+  background-color: transparent;
+  color: var(--white);
+  border: 1px solid var(--white);
+}
+
+.contact-btn:hover {
+  background-color: var(--white);
+  color: var(--secondary-color);
+}
+
+.book-btn {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.book-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+.mobile-menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  z-index: 1001;
+  outline: none;
+  box-shadow: none;
+}
+
+.hamburger {
+  position: relative;
+  display: block;
+  width: 30px;
+  height: 2px;
+  background-color: var(--white);
+  transition: var(--transition);
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background-color: var(--white);
+  transition: var(--transition);
+}
+
+.hamburger::before {
+  transform: translateY(-10px);
+}
+
+.hamburger::after {
+  transform: translateY(10px);
+}
+
+.hamburger.open {
+  background-color: transparent;
+}
+
+.hamburger.open::before {
+  transform: rotate(45deg);
+}
+
+.hamburger.open::after {
+  transform: rotate(-45deg);
+}
+
+/* Styles pour les appareils tactiles */
+@media (hover: none) {
+  .contact-btn:active, .book-btn:active {
+    transform: scale(0.95);
   }
-  
-  .header.scrolled {
-    background-color: rgba(0, 0, 0, 0.9);
-    box-shadow: var(--shadow-md);
-  }
-  
+}
+
+/* Styles responsives */
+@media (max-width: 992px) {
   .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    max-width: var(--container-width);
-    margin: 0 auto;
-  }
-  
-  .logo-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo {
-    height: 60px;
-    transition: var(--transition);
-  }
-  
-  .header.scrolled .logo {
-    height: 50px;
+    padding: 0.8rem 1.5rem;
   }
   
   .header-actions {
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .contact-btn, .book-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    border-radius: var(--border-radius-sm);
-    font-weight: 600;
-    transition: var(--transition);
-  }
-  
-  .contact-btn {
-    background-color: transparent;
-    color: var(--white);
-    border: 1px solid var(--white);
-  }
-  
-  .contact-btn:hover {
-    background-color: var(--white);
-    color: var(--secondary-color);
-  }
-  
-  .book-btn {
-    background-color: var(--primary-color);
-    color: var(--white);
-  }
-  
-  .book-btn:hover {
-    background-color: var(--primary-dark);
+    display: none;
   }
   
   .mobile-menu-toggle {
-    display: none;
-    background: transparent;
-    border: none;
-    padding: 0.5rem;
-    cursor: pointer;
-  }
-  
-  .hamburger {
-    position: relative;
     display: block;
-    width: 30px;
-    height: 2px;
-    background-color: var(--white);
-    transition: var(--transition);
   }
   
-  .hamburger::before,
-  .hamburger::after {
-    content: '';
-    position: absolute;
-    width: 30px;
-    height: 2px;
-    background-color: var(--white);
-    transition: var(--transition);
+  .logo {
+    height: 50px;
   }
   
-  .hamburger::before {
-    transform: translateY(-10px);
+  /* Overlay sombre quand le menu est ouvert */
+  .header.menu-open::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0; 
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    animation: fadeIn 0.3s ease forwards;
+  }
+}
+
+/* Pour les très petits écrans */
+@media (max-width: 576px) {
+  .header-container {
+    padding: 0.8rem 1rem;
   }
   
-  .hamburger::after {
-    transform: translateY(10px);
+  .logo {
+    height: 40px;
   }
   
-  .hamburger.open {
-    background-color: transparent;
+  .hamburger, .hamburger::before, .hamburger::after {
+    width: 25px;
   }
-  
-  .hamburger.open::before {
-    transform: rotate(45deg);
-  }
-  
-  .hamburger.open::after {
-    transform: rotate(-45deg);
-  }
-  
-  @media (max-width: 992px) {
-    .header-actions {
-      display: none;
-    }
-    
-    .mobile-menu-toggle {
-      display: block;
-    }
-  }
+}
+
+/* Animation pour l'overlay */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

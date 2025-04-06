@@ -7,4 +7,17 @@ module.exports = {
   googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
   jwtSecret: process.env.JWT_SECRET,
   jwtExpire: process.env.JWT_EXPIRE || '30d',
+
+  // Email configuration
+  emailHost: process.env.EMAIL_HOST,
+  emailPort: process.env.EMAIL_PORT,
+  emailSecure: process.env.EMAIL_SECURE === 'true',
+  emailUser: process.env.EMAIL_USER,
+  emailPassword: process.env.EMAIL_PASSWORD,
+  contactEmail: process.env.CONTACT_EMAIL,
+  driverEmail: process.env.DRIVER_EMAIL,
+  
+  // WhatsApp configuration
+  whatsappNotificationsEnabled: process.env.WHATSAPP_NOTIFICATIONS_ENABLED === 'true',
+  driverPhoneNumber: process.env.DRIVER_PHONE_NUMBER || '33600000000',
 };

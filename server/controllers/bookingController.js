@@ -3,6 +3,7 @@ const Booking = require('../models/Booking');
 const GoogleMapsService = require('../services/googleMapsService');
 const nodemailer = require('nodemailer');
 const config = require('../config/environment');
+const whatsappService = require('../services/whatsappService');
 
 // @desc    Create a new booking
 // @route   POST /api/bookings
@@ -63,18 +64,7 @@ exports.createBooking = asyncHandler(async (req, res) => {
       customerInfo,
     });
 
-    // Setup email transporter
-    const transporter = nodemailer.createTransport({
-      host: config.emailHost,
-      port: config.emailPort,
-      secure: config.emailSecure,
-      auth: {
-        user: config.emailUser,
-        pass: config.emailPassword,
-      },
-    });
-
-    // Format date and time for email
+    // Format date and time for notifications
     const formattedPickupDate = new Date(pickupDateTime).toLocaleDateString('fr-FR', {
       day: '2-digit',
       month: '2-digit',
@@ -84,6 +74,17 @@ exports.createBooking = asyncHandler(async (req, res) => {
     const formattedPickupTime = new Date(pickupDateTime).toLocaleTimeString('fr-FR', {
       hour: '2-digit',
       minute: '2-digit',
+    });
+
+    // Setup email transporter
+    const transporter = nodemailer.createTransport({
+      host: config.emailHost,
+      port: config.emailPort,
+      secure: config.emailSecure,
+      auth: {
+        user: config.emailUser,
+        pass: config.emailPassword,
+      },
     });
 
     // Email to driver
@@ -143,6 +144,52 @@ exports.createBooking = asyncHandler(async (req, res) => {
     // Send emails
     await transporter.sendMail(driverMailOptions);
     await transporter.sendMail(customerMailOptions);
+
+    // Envoyer une notification WhatsApp
+    if (config.whatsappNotificationsEnabled) {
+      // Créer le message WhatsApp
+      const whatsappMessage = `
+🚖 *NOUVELLE RÉSERVATION* 🚖
+
+*Référence:* ${booking._id}
+*Client:* ${customerInfo.name}
+*Téléphone:* ${customerInfo.phone}
+*Email:* ${customerInfo.email}
+
+*DÉTAILS DE LA COURSE*
+*Départ:* ${pickupAddress}
+*Destination:* ${dropoffAddress}
+*Date:* ${formattedPickupDate}
+*Heure:* ${formattedPickupTime}
+*Passagers:* ${passengers || 1}
+*Bagages:* ${luggage || 0}
+*Aller-retour:* ${roundTrip ? 'Oui' : 'Non'}
+*Prix:* ${price.amount} ${price.currency}
+
+${customerInfo.specialRequests ? `*Demandes spéciales:* ${customerInfo.specialRequests}` : ''}
+`;
+
+      try {
+        // Vérifier que le service WhatsApp est prêt
+        const whatsappStatus = whatsappService.getStatus();
+        
+        if (whatsappStatus.isReady) {
+          // Envoyer le message via whatsapp-web.js
+          const result = await whatsappService.sendMessage(config.driverPhoneNumber, whatsappMessage);
+          
+          if (result.success) {
+            console.log('Notification WhatsApp envoyée avec succès');
+          } else {
+            console.warn('Impossible d\'envoyer la notification WhatsApp:', result.error);
+          }
+        } else {
+          console.warn(`Service WhatsApp non prêt (${whatsappStatus.status}). Notification non envoyée.`);
+        }
+      } catch (error) {
+        console.error('Erreur lors de l\'envoi de la notification WhatsApp:', error);
+        // Ne pas échouer la réponse si la notification WhatsApp échoue
+      }
+    }
 
     res.status(201).json({
       success: true,

@@ -21,7 +21,7 @@ const HomePage = () => {
           </div>
         </div>
         <div className="hero-image">
-          <img src="/assets/images/taxi-hero.jpg" alt="Taxi VLB service" />
+          <img src="" alt="Taxi VLB service" />
         </div>
       </section>
       

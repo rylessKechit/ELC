@@ -1,14 +1,15 @@
 import axios from 'axios';
 
-// Create an instance of axios
+// Création d'une instance axois avec la bonne URL de base
+// Ici nous utilisons explicitement le port 4000 où le serveur backend s'exécute
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: 'http://localhost:4000/api',
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// Add a request interceptor to add the auth token to requests
+// Ajouter un intercepteur de requête pour ajouter le token d'authentification si nécessaire
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
@@ -22,21 +23,24 @@ api.interceptors.request.use(
   }
 );
 
-// Add a response interceptor for global error handling
+// Ajouter un intercepteur de réponse pour gérer les erreurs globalement
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    // Handle specific error cases
+    // Afficher les détails de l'erreur dans la console pour le débogage
+    console.error('API Error:', error.response?.data || error.message);
+    
+    // Gérer les erreurs d'authentification
     if (error.response && error.response.status === 401) {
-      // Handle unauthorized errors (e.g., logout user, redirect to login)
       localStorage.removeItem('token');
-      // Redirect logic would go here
+      // La logique de redirection pourrait être ajoutée ici
     }
+    
     return Promise.reject(error);
   }
 );
 
-// API service functions
+// Services API
 export const bookingService = {
   createBooking: (bookingData) => api.post('/bookings', bookingData),
   getBookingById: (id) => api.get(`/bookings/${id}`),

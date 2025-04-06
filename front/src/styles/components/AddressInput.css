@@ -1,55 +1,76 @@
 .address-input {
-    position: relative;
-  }
-  
-  .address-field {
-    width: 100%;
-    padding: 0.8rem 1rem;
-    border: 1px solid var(--mid-gray);
-    border-radius: var(--border-radius-sm);
-    font-size: 1rem;
-    transition: var(--transition);
-  }
-  
-  .address-field:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(165, 138, 42, 0.2);
-  }
-  
-  /* Google Places Autocomplete customization */
-  .pac-container {
-    border-radius: var(--border-radius-sm);
-    border: 1px solid var(--mid-gray);
-    box-shadow: var(--shadow-md);
-  }
-  
-  .pac-item {
-    padding: 0.8rem;
-    cursor: pointer;
-  }
-  
-  .pac-item:hover {
-    background-color: var(--light-gray);
-  }
-  
-  .pac-item-selected {
-    background-color: var(--light-gray);
-  }
-  
-  .pac-icon {
-    margin-right: 0.8rem;
-  }
-  
-  .pac-item-query {
-    font-size: 1rem;
-    color: var(--text-color);
-  }
-  
-  .pac-matched {
-    font-weight: bold;
-  }
-  
-  .pac-secondary-text {
-    font-size: 0.9rem;
-    color: var(--text-light);
-  }
+  position: relative;
+  width: 100%;
+}
+
+.address-field {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--mid-gray);
+  border-radius: var(--border-radius-sm);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.address-field:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(165, 138, 42, 0.2);
+}
+
+/* Style pour PlaceAutocompleteElement */
+.address-input gmpx-place-autocomplete-element {
+  width: 100%;
+}
+
+.address-input gmpx-place-autocomplete-element .gmpx-input {
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--mid-gray);
+  border-radius: var(--border-radius-sm);
+  font-size: 1rem;
+  transition: var(--transition);
+  width: 100%;
+}
+
+.address-input gmpx-place-autocomplete-element .gmpx-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(165, 138, 42, 0.2);
+}
+
+/* Google Places Autocomplete customization */
+.pac-container {
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--mid-gray);
+  box-shadow: var(--shadow-md);
+  z-index: 1100; /* S'assurer que le menu déroulant est au-dessus des autres éléments */
+}
+
+.pac-item {
+  padding: 0.8rem;
+  cursor: pointer;
+}
+
+.pac-item:hover {
+  background-color: var(--light-gray);
+}
+
+.pac-item-selected {
+  background-color: var(--light-gray);
+}
+
+.pac-icon {
+  margin-right: 0.8rem;
+}
+
+.pac-item-query {
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.pac-matched {
+  font-weight: bold;
+}
+
+.pac-secondary-text {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}

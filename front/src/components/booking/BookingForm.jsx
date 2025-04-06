@@ -3,6 +3,7 @@ import AddressInput from './AddressInput';
 import DateTimePicker from './DateTimePicker';
 import PriceCalculator from './PriceCalculator';
 import '../../styles/components/BookingForm.css';
+import { priceService } from '../../services/api';
 
 const BookingForm = () => {
   const [formData, setFormData] = useState({
@@ -13,21 +14,56 @@ const BookingForm = () => {
     passengers: 1,
     luggage: 0,
     roundTrip: false,
+    pickupAddressPlaceId: '',
+    dropoffAddressPlaceId: '',
   });
   
   const [priceEstimate, setPriceEstimate] = useState(null);
   const [isCalculating, setIsCalculating] = useState(false);
   const [error, setError] = useState('');
   
+  // Initialiser les champs de date et heure
+  useEffect(() => {
+    // Date de demain
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const formattedDate = formatDate(tomorrow);
+    
+    // Heure actuelle + 2 heures
+    const defaultTime = new Date();
+    defaultTime.setHours(defaultTime.getHours() + 2);
+    const formattedTime = formatTime(defaultTime);
+    
+    setFormData(prev => ({
+      ...prev,
+      pickupDate: formattedDate,
+      pickupTime: formattedTime
+    }));
+  }, []);
+  
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  const formatTime = (date) => {
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${hours}:${minutes}`;
+  };
+  
   const handleInputChange = (name, value) => {
     setFormData(prev => ({ ...prev, [name]: value }));
     // Reset price estimate when inputs change
-    if (['pickupAddress', 'dropoffAddress'].includes(name)) {
+    if (['pickupAddress', 'dropoffAddress', 'pickupDate', 'pickupTime', 'passengers', 'luggage', 'roundTrip'].includes(name)) {
       setPriceEstimate(null);
     }
   };
   
   const handleAddressSelect = (name, address, placeId) => {
+    console.log(`Address selected for ${name}: ${address}, placeId: ${placeId}`);
     setFormData(prev => ({ 
       ...prev, 
       [name]: address,
@@ -37,9 +73,14 @@ const BookingForm = () => {
   };
   
   const calculatePrice = async () => {
-    // Validate form
+    // Validation du formulaire
     if (!formData.pickupAddress || !formData.dropoffAddress || !formData.pickupDate || !formData.pickupTime) {
       setError('Veuillez remplir tous les champs obligatoires');
+      return;
+    }
+    
+    if (!formData.pickupAddressPlaceId || !formData.dropoffAddressPlaceId) {
+      setError('Veuillez sélectionner des adresses valides dans les suggestions');
       return;
     }
     
@@ -47,39 +88,61 @@ const BookingForm = () => {
     setIsCalculating(true);
     
     try {
-      // Call to backend API to calculate price
-      const response = await fetch('/api/price/estimate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          pickupPlaceId: formData.pickupAddressPlaceId,
-          dropoffPlaceId: formData.dropoffAddressPlaceId,
-          pickupDateTime: `${formData.pickupDate}T${formData.pickupTime}`,
-          passengers: formData.passengers,
-          luggage: formData.luggage,
-          roundTrip: formData.roundTrip,
-        }),
+      console.log("Envoi de la requête au serveur avec les données:", {
+        pickupPlaceId: formData.pickupAddressPlaceId,
+        dropoffPlaceId: formData.dropoffAddressPlaceId,
+        pickupDateTime: `${formData.pickupDate}T${formData.pickupTime}`,
+        passengers: parseInt(formData.passengers),
+        luggage: parseInt(formData.luggage),
+        roundTrip: formData.roundTrip,
+      });
+
+      // Utiliser priceService pour faire la requête
+      const response = await priceService.calculateEstimate({
+        pickupPlaceId: formData.pickupAddressPlaceId,
+        dropoffPlaceId: formData.dropoffAddressPlaceId,
+        pickupDateTime: `${formData.pickupDate}T${formData.pickupTime}`,
+        passengers: parseInt(formData.passengers),
+        luggage: parseInt(formData.luggage),
+        roundTrip: formData.roundTrip,
       });
       
-      if (!response.ok) {
-        throw new Error('Failed to calculate price');
-      }
+      // Vérifier et structurer la réponse du serveur
+      console.log("Réponse du serveur:", response.data);
       
-      const data = await response.json();
-      setPriceEstimate(data);
+      if (response.data && response.data.success) {
+        // Utiliser la structure de données correcte en fonction de la réponse API
+        if (response.data.data && response.data.data.estimate) {
+          setPriceEstimate(response.data.data.estimate);
+        } else {
+          console.warn("La réponse du serveur ne contient pas les données d'estimation attendues:", response.data);
+          setError("Format de réponse inattendu du serveur.");
+        }
+      } else {
+        setError(response.data?.error || "Erreur lors du calcul du prix.");
+      }
     } catch (err) {
-      setError('Une erreur est survenue lors du calcul du prix');
-      console.error(err);
+      console.error('Erreur lors du calcul du prix:', err);
+      
+      // Afficher les détails de l'erreur pour faciliter le débogage
+      if (err.response) {
+        console.error('Réponse du serveur:', err.response.status, err.response.data);
+        setError(`Erreur ${err.response.status}: ${err.response.data.error || 'Erreur serveur'}`);
+      } else if (err.request) {
+        console.error('Pas de réponse reçue:', err.request);
+        setError('Pas de réponse du serveur. Vérifiez que le serveur backend est en cours d\'exécution.');
+      } else {
+        console.error('Erreur de configuration:', err.message);
+        setError(`Erreur: ${err.message}`);
+      }
     } finally {
       setIsCalculating(false);
     }
   };
   
-  const submitBooking = async () => {
-    // Implementation for booking submission
-    // Will be connected to the backend
+  const submitBooking = () => {
+    // Implémentation future pour la soumission de réservation
+    alert('Fonctionnalité de réservation à implémenter.');
   };
   
   return (
@@ -128,7 +191,7 @@ const BookingForm = () => {
           <select 
             id="passengers" 
             value={formData.passengers}
-            onChange={e => handleInputChange('passengers', parseInt(e.target.value))}
+            onChange={e => handleInputChange('passengers', e.target.value)}
           >
             {[1, 2, 3, 4, 5, 6, 7].map(num => (
               <option key={num} value={num}>{num}</option>
@@ -141,7 +204,7 @@ const BookingForm = () => {
           <select 
             id="luggage" 
             value={formData.luggage}
-            onChange={e => handleInputChange('luggage', parseInt(e.target.value))}
+            onChange={e => handleInputChange('luggage', e.target.value)}
           >
             {[0, 1, 2, 3, 4, 5, 6].map(num => (
               <option key={num} value={num}>{num}</option>

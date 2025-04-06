@@ -9,6 +9,7 @@ const Header = ({ darkMode, setDarkMode }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
+  // Gestionnaire de défilement
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -22,9 +23,16 @@ const Header = ({ darkMode, setDarkMode }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Fermer le menu mobile lors du changement de page
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location]);
+
+  // Fonction simple pour inverser l'état du menu
+  const handleToggleMenu = () => {
+    console.log("Menu toggled, current state:", mobileMenuOpen);
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
 
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
@@ -52,10 +60,11 @@ const Header = ({ darkMode, setDarkMode }) => {
           </Link>
         </div>
         
+        {/* Bouton de menu mobile avec onClick direct */}
         <button 
           className="mobile-menu-toggle" 
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle menu"
+          onClick={handleToggleMenu}
+          aria-label="Menu"
         >
           <span className={`hamburger ${mobileMenuOpen ? 'open' : ''}`}></span>
         </button>

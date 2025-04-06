@@ -1,0 +1,112 @@
+.booking-success {
+    background-color: var(--white);
+    border-radius: var(--border-radius-md);
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    margin-top: 2rem;
+    text-align: center;
+  }
+  
+  .success-icon {
+    font-size: 3rem;
+    color: var(--success);
+    margin-bottom: 1rem;
+  }
+  
+  .booking-success h3 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+  }
+  
+  .success-message {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+  }
+  
+  .booking-details {
+    background-color: var(--light-gray);
+    border-radius: var(--border-radius-sm);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+  
+  .booking-details h4 {
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+    text-align: center;
+  }
+  
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--mid-gray);
+  }
+  
+  .detail-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  
+  .detail-label {
+    font-weight: 600;
+    color: var(--text-light);
+  }
+  
+  .detail-value {
+    color: var(--text-color);
+    text-align: right;
+    word-break: break-word;
+  }
+  
+  .next-steps {
+    margin-bottom: 2rem;
+  }
+  
+  .next-steps p {
+    margin-bottom: 0.5rem;
+  }
+  
+  .next-steps a {
+    color: var(--primary-color);
+    font-weight: 600;
+  }
+  
+  .success-actions {
+    margin-top: 2rem;
+  }
+  
+  .home-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-weight: 600;
+    border-radius: var(--border-radius-sm);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  
+  .home-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: 768px) {
+    .booking-success {
+      padding: 1.5rem;
+    }
+    
+    .detail-item {
+      flex-direction: column;
+    }
+    
+    .detail-value {
+      text-align: left;
+      margin-top: 0.2rem;
+    }
+  }
