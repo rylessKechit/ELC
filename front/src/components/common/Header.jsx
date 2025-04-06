@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
-import '../../styles/components/Header.css';
 import logo from '../../assets/images/logo.png';
+import '../../styles/components/Header.css';
 
-const Header = ({ darkMode, setDarkMode }) => {
+const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -28,14 +28,20 @@ const Header = ({ darkMode, setDarkMode }) => {
     setMobileMenuOpen(false);
   }, [location]);
 
-  // Fonction simple pour inverser l'état du menu
+  // Fonction pour inverser l'état du menu
   const handleToggleMenu = () => {
-    console.log("Menu toggled, current state:", mobileMenuOpen);
     setMobileMenuOpen(!mobileMenuOpen);
+    
+    // Empêcher le défilement du body quand le menu est ouvert
+    if (!mobileMenuOpen) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
   };
 
   return (
-    <header className={`header ${scrolled ? 'scrolled' : ''}`}>
+    <header className={`header ${scrolled ? 'scrolled' : ''} ${mobileMenuOpen ? 'menu-open' : ''}`}>
       <div className="header-container">
         <div className="logo-container">
           <Link to="/">
@@ -49,18 +55,17 @@ const Header = ({ darkMode, setDarkMode }) => {
             <span>M'appeler</span>
           </Link>
           
-          <Link to="/contact" className="contact-btn">
+          <Link to="/contact" className="location-btn">
             <i className="fas fa-map-marker-alt"></i>
             <span>Me trouver</span>
           </Link>
           
           <Link to="/" className="book-btn">
             <i className="fas fa-calendar-alt"></i>
-            <span>Réserver votre course</span>
+            <span>Réserver</span>
           </Link>
         </div>
         
-        {/* Bouton de menu mobile avec onClick direct */}
         <button 
           className="mobile-menu-toggle" 
           onClick={handleToggleMenu}

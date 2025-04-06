@@ -5,180 +5,143 @@
   width: 100%;
   background-color: rgba(0, 0, 0, 0.9);
   z-index: 1000;
-  transition: var(--transition);
-  box-shadow: var(--shadow-md);
-}
-
-.header.scrolled {
-  background-color: rgba(0, 0, 0, 0.95);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  height: auto; /* Laisser la hauteur s'adapter au contenu */
 }
 
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  max-width: var(--container-width);
+  padding: 0.5rem 2rem;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.logo-container {
-  display: flex;
-  align-items: center;
-  z-index: 1001; /* S'assurer que le logo reste au-dessus du menu mobile */
-}
-
+/* S'assurer que le logo est de taille raisonnable */
 .logo {
-  height: 60px;
-  transition: var(--transition);
-}
-
-.header.scrolled .logo {
   height: 50px;
+  width: auto;
 }
 
-.header-actions {
+/* Correction du menu navbar */
+.navbar {
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+}
+
+.nav-links {
   display: flex;
-  gap: 1rem;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+  height: auto;
 }
 
-.contact-btn, .book-btn {
+.nav-links li {
+  flex: 1;
+  text-align: center;
+}
+
+.nav-links a {
+  display: block;
+  padding: 0.75rem 0.5rem;
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+
+/* Correction du hero section */
+.hero-section {
+  height: 100vh; /* Force la hauteur à exactement la hauteur de la fenêtre */
+  min-height: 500px; /* Hauteur minimale pour éviter qu'il soit trop petit */
+  max-height: 800px; /* Hauteur maximale pour éviter qu'il prenne trop de place */
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: var(--border-radius-sm);
-  font-weight: 600;
-  transition: var(--transition);
-  text-decoration: none;
+  padding-top: 100px; /* Espace pour le header */
+  margin-top: 0; /* Annule la marge négative */
+  overflow: hidden;
+  background-color: var(--secondary-color);
 }
 
-.contact-btn {
-  background-color: transparent;
+.hero-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 4rem;
   color: var(--white);
-  border: 1px solid var(--white);
+  z-index: 1;
+  margin-bottom: 2rem;
 }
 
-.contact-btn:hover {
-  background-color: var(--white);
-  color: var(--secondary-color);
-}
-
-.book-btn {
-  background-color: var(--primary-color);
-  color: var(--white);
-}
-
-.book-btn:hover {
-  background-color: var(--primary-dark);
-}
-
-.mobile-menu-toggle {
-  display: none;
-  background: transparent;
-  border: none;
-  padding: 0.5rem;
-  cursor: pointer;
-  z-index: 1001;
-  outline: none;
-  box-shadow: none;
-}
-
-.hamburger {
-  position: relative;
-  display: block;
-  width: 30px;
-  height: 2px;
-  background-color: var(--white);
-  transition: var(--transition);
-}
-
-.hamburger::before,
-.hamburger::after {
-  content: '';
+/* Style du bouton de défilement vers le bas */
+.scroll-down-button {
   position: absolute;
-  width: 30px;
-  height: 2px;
-  background-color: var(--white);
+  bottom: 30px; /* Position fixe depuis le bas */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  font-size: 1.2rem;
+  animation: bounce 2s infinite;
+  z-index: 10;
   transition: var(--transition);
 }
 
-.hamburger::before {
-  transform: translateY(-10px);
-}
-
-.hamburger::after {
-  transform: translateY(10px);
-}
-
-.hamburger.open {
-  background-color: transparent;
-}
-
-.hamburger.open::before {
-  transform: rotate(45deg);
-}
-
-.hamburger.open::after {
-  transform: rotate(-45deg);
-}
-
-/* Styles pour les appareils tactiles */
-@media (hover: none) {
-  .contact-btn:active, .book-btn:active {
-    transform: scale(0.95);
+/* Animation de rebond pour le bouton de défilement */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
   }
 }
 
-/* Styles responsives */
+/* Assurer que le contenu principal a un espacement correct */
+.main-content {
+  padding-top: 100px; /* Hauteur du header + navbar */
+}
+
+/* Responsive */
 @media (max-width: 992px) {
-  .header-container {
-    padding: 0.8rem 1.5rem;
+  .hero-content {
+    padding: 2rem;
   }
   
-  .header-actions {
-    display: none;
+  .main-content {
+    padding-top: 70px; /* Header seul en mobile */
   }
   
-  .mobile-menu-toggle {
-    display: block;
-  }
-  
-  .logo {
-    height: 50px;
-  }
-  
-  /* Overlay sombre quand le menu est ouvert */
-  .header.menu-open::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0; 
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 998;
-    animation: fadeIn 0.3s ease forwards;
+  .hero-section {
+    padding-top: 70px;
   }
 }
 
-/* Pour les très petits écrans */
-@media (max-width: 576px) {
-  .header-container {
-    padding: 0.8rem 1rem;
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 1.8rem;
   }
   
-  .logo {
-    height: 40px;
+  .hero-section {
+    height: auto;
+    min-height: 100vh;
   }
-  
-  .hamburger, .hamburger::before, .hamburger::after {
-    width: 25px;
-  }
-}
-
-/* Animation pour l'overlay */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }

@@ -1,9 +1,43 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import BookingForm from '../components/booking/BookingForm';
 import '../styles/pages/HomePage.css';
 
 const HomePage = () => {
+
+  useEffect(() => {
+    const scrollButton = document.querySelector('.scroll-down-button');
+    if (scrollButton) {
+      scrollButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = scrollButton.getAttribute('href').substring(1);
+        scrollToElement(targetId);
+      });
+    }
+    
+    // Nettoyage de l'écouteur d'événement lors du démontage du composant
+    return () => {
+      if (scrollButton) {
+        scrollButton.removeEventListener('click', () => {});
+      }
+    };
+  }, []);
+
+  // Fonction pour le défilement fluide vers un élément
+  const scrollToElement = (elementId) => {
+    const element = document.getElementById(elementId);
+    if (element) {
+      const headerOffset = 80; // Hauteur de votre header
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <div className="home-page">
       <section className="hero-section">
@@ -21,11 +55,14 @@ const HomePage = () => {
           </div>
         </div>
         <div className="hero-image">
-          <img src="" alt="Taxi VLB service" />
+          <img src="/assets/images/hero-background.jpg" alt="Taxi VLB service" />
         </div>
+        <a href="#services-overview" className="scroll-down-button">
+          <i className="fas fa-chevron-down"></i>
+        </a>
       </section>
       
-      <section className="services-overview">
+      <section id="services-overview" className="services-overview">
         <h2>NOS SERVICES DE TRANSPORT</h2>
         <div className="services-grid">
           <div className="service-card">

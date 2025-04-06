@@ -1,11 +1,14 @@
+/* Navbar.css - Fichier de style complet */
+
 .navbar {
-  background-color: var(--primary-color);
+  background-color: rgba(0, 0, 0, 0.8);
+  border-top: 1px solid rgba(165, 138, 42, 0.3);
 }
 
 .nav-links {
   display: flex;
   justify-content: center;
-  max-width: var(--container-width);
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0;
 }
@@ -13,34 +16,39 @@
 .nav-links li {
   position: relative;
   list-style: none;
+  flex: 1;
+  text-align: center;
 }
 
 .nav-links a {
   display: block;
-  padding: 1rem 1.5rem;
-  color: var(--white);
+  padding: 1rem 0.5rem;
+  color: #fff;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: var(--transition);
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
   text-decoration: none;
+  border-bottom: 3px solid transparent;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-  background-color: var(--primary-dark);
+  background-color: rgba(165, 138, 42, 0.2);
+  border-bottom: 3px solid #a58a2a;
 }
 
 /* Style pour mobile */
 @media (max-width: 992px) {
   /* Comportement par défaut - menu fermé */
   .navbar {
-    display: none; /* Caché par défaut */
+    display: none;
     position: fixed;
-    top: var(--header-height);
+    top: 70px; /* Hauteur du header sur mobile */
     left: 0;
     width: 100%;
-    height: calc(100vh - var(--header-height));
+    height: calc(100vh - 70px);
     background-color: rgba(0, 0, 0, 0.95);
     z-index: 999;
     overflow-y: auto;
@@ -48,7 +56,7 @@
   
   /* Quand le menu est ouvert */
   .navbar.mobile-open {
-    display: block !important;
+    display: block;
   }
   
   .nav-links {
@@ -71,7 +79,32 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
   
+  .nav-links a:hover,
+  .nav-links a.active {
+    background-color: rgba(165, 138, 42, 0.3);
+    border-bottom: 1px solid #a58a2a;
+  }
+  
   .nav-links li:last-child a {
-    border-bottom: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media (min-width: 993px) {
+  /* Toujours afficher le menu sur desktop */
+  .navbar {
+    display: block !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar {
+    top: 60px; /* Hauteur du header sur très petit écran */
+    height: calc(100vh - 60px);
+  }
+  
+  .nav-links a {
+    font-size: 1rem;
+    padding: 0.8rem;
   }
 }

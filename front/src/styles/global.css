@@ -353,3 +353,48 @@ a:focus, button:focus, input:focus, select:focus, textarea:focus {
     padding: 12px 16px;
   }
 }
+
+/* Empêcher le défilement quand le menu mobile est ouvert */
+body.no-scroll {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+/* Ajuster le padding-top du contenu principal pour tenir compte du header fixe */
+.main-content {
+  padding-top: 135px; /* Hauteur du header (70px) + hauteur de la navbar (65px) */
+}
+
+@media (max-width: 992px) {
+  .main-content {
+    padding-top: 70px; /* Seulement la hauteur du header en mobile */
+  }
+}
+
+@media (max-width: 576px) {
+  .main-content {
+    padding-top: 60px; /* Hauteur du header sur très petit écran */
+  }
+}
+
+/* Pour les sections qui doivent commencer au début de la page (comme le hero) */
+.fullscreen-section {
+  margin-top: -135px; /* Compensation négative de la hauteur du header */
+  padding-top: 135px; /* Rétablir l'espace pour le contenu */
+}
+
+@media (max-width: 992px) {
+  .fullscreen-section {
+    margin-top: -70px;
+    padding-top: 70px;
+  }
+}
+
+@media (max-width: 576px) {
+  .fullscreen-section {
+    margin-top: -60px;
+    padding-top: 60px;
+  }
+}
