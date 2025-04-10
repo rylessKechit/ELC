@@ -26,10 +26,11 @@ const Header = () => {
   // Fermer le menu mobile lors du changement de page
   useEffect(() => {
     setMobileMenuOpen(false);
+    document.body.classList.remove('no-scroll');
   }, [location]);
 
   // Fonction pour inverser l'état du menu
-  const handleToggleMenu = () => {
+  const toggleMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
     
     // Empêcher le défilement du body quand le menu est ouvert
@@ -41,38 +42,43 @@ const Header = () => {
   };
 
   return (
-    <header className={`header ${scrolled ? 'scrolled' : ''} ${mobileMenuOpen ? 'menu-open' : ''}`}>
+    <header className={`header ${scrolled ? 'scrolled' : ''}`}>
       <div className="header-container">
         <div className="logo-container">
           <Link to="/">
             <img src={logo} alt="Taxi VLB Logo" className="logo" />
           </Link>
         </div>
-        
-        <div className="header-actions">
-          <Link to="/contact" className="contact-btn">
-            <i className="fas fa-phone"></i>
-            <span>M'appeler</span>
-          </Link>
+
+        <div className="header-right">
+          <div className="contact-buttons">
+            <Link to="/contact" className="contact-btn">
+              <i className="fas fa-phone"></i>
+              <span>M'appeler</span>
+            </Link>
+            
+            <Link to="/contact" className="contact-btn">
+              <i className="fas fa-map-marker-alt"></i>
+              <span>Me trouver</span>
+            </Link>
+            
+            <Link to="/#booking" className="contact-btn primary">
+              <i className="fas fa-calendar-alt"></i>
+              <span>Réserver</span>
+            </Link>
+          </div>
           
-          <Link to="/contact" className="location-btn">
-            <i className="fas fa-map-marker-alt"></i>
-            <span>Me trouver</span>
-          </Link>
-          
-          <Link to="/" className="book-btn">
-            <i className="fas fa-calendar-alt"></i>
-            <span>Réserver</span>
-          </Link>
+          <button 
+            className={`mobile-menu-toggle ${mobileMenuOpen ? 'active' : ''}`}
+            onClick={toggleMenu}
+            aria-label="Menu principal"
+            aria-expanded={mobileMenuOpen}
+          >
+            <span className="bar"></span>
+            <span className="bar"></span>
+            <span className="bar"></span>
+          </button>
         </div>
-        
-        <button 
-          className="mobile-menu-toggle" 
-          onClick={handleToggleMenu}
-          aria-label="Menu"
-        >
-          <span className={`hamburger ${mobileMenuOpen ? 'open' : ''}`}></span>
-        </button>
       </div>
       
       <Navbar mobileMenuOpen={mobileMenuOpen} />

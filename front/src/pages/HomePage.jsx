@@ -6,41 +6,45 @@ import '../styles/pages/HomePage.css';
 const HomePage = () => {
 
   useEffect(() => {
-    const scrollButton = document.querySelector('.scroll-down-button');
-    if (scrollButton) {
-      scrollButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = scrollButton.getAttribute('href').substring(1);
-        scrollToElement(targetId);
-      });
-    }
-    
-    // Nettoyage de l'écouteur d'événement lors du démontage du composant
-    return () => {
-      if (scrollButton) {
-        scrollButton.removeEventListener('click', () => {});
+    // Function to handle smooth scrolling
+    const smoothScroll = (e) => {
+      if (e.target.tagName.toLowerCase() === 'a') {
+        const href = e.target.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+          const targetId = href.substring(1);
+          const targetElement = document.getElementById(targetId);
+          
+          if (targetElement) {
+            const headerOffset = 100; // Adjust based on your header height
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }
       }
+    };
+  
+    // Add event listeners for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', smoothScroll);
+    });
+  
+    // Cleanup
+    return () => {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.removeEventListener('click', smoothScroll);
+      });
     };
   }, []);
 
-  // Fonction pour le défilement fluide vers un élément
-  const scrollToElement = (elementId) => {
-    const element = document.getElementById(elementId);
-    if (element) {
-      const headerOffset = 80; // Hauteur de votre header
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
-
   return (
     <div className="home-page">
-      <section className="hero-section">
+      <section className="hero-section fullscreen">
         <div className="hero-content">
           <h1>TAXI VLB, POUR TOUS VOS TRAJETS PROFESSIONNELS ET PRIVÉS</h1>
           <p>Taxi VLB est une entreprise de taxi basée à Verrières le Buisson.</p>
@@ -56,9 +60,10 @@ const HomePage = () => {
         </div>
         <div className="hero-image">
           <img src="/assets/images/hero-background.jpg" alt="Taxi VLB service" />
+          <div className="overlay"></div>
         </div>
-        <a href="#services-overview" className="scroll-down-button">
-          <i className="fas fa-chevron-down"></i>
+        <a href="#services-overview" className="scroll-down-button" aria-label="Défiler vers le bas">
+          <i className="fas fa-chevron-down" aria-hidden="true"></i>
         </a>
       </section>
       

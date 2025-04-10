@@ -2,59 +2,32 @@ import { NavLink } from 'react-router-dom';
 import '../../styles/components/Navbar.css';
 
 const Navbar = ({ mobileMenuOpen }) => {
+  const navLinks = [
+    { path: '/', label: 'Accueil', exact: true },
+    { path: '/trajets-aeroport-gare', label: 'Aéroport / Gare' },
+    { path: '/trajets-longues-distances', label: 'Longues Distances' },
+    { path: '/trajets-sur-mesure', label: 'Sur Mesure' },
+    { path: '/prestation-vip', label: 'VIP' },
+    { path: '/contact', label: 'Contact' },
+  ];
+
   return (
     <nav className={`navbar ${mobileMenuOpen ? 'mobile-open' : ''}`}>
-      <ul className="nav-links">
-        <li>
-          <NavLink 
-            to="/" 
-            className={({ isActive }) => isActive ? 'active' : ''}
-            end
-          >
-            Accueil
-          </NavLink>
-        </li>
-        <li>
-          <NavLink 
-            to="/trajets-aeroport-gare" 
-            className={({ isActive }) => isActive ? 'active' : ''}
-          >
-            Aéroport / Gare
-          </NavLink>
-        </li>
-        <li>
-          <NavLink 
-            to="/trajets-longues-distances" 
-            className={({ isActive }) => isActive ? 'active' : ''}
-          >
-            Longues Distances
-          </NavLink>
-        </li>
-        <li>
-          <NavLink 
-            to="/trajets-sur-mesure" 
-            className={({ isActive }) => isActive ? 'active' : ''}
-          >
-            Sur Mesure
-          </NavLink>
-        </li>
-        <li>
-          <NavLink 
-            to="/prestation-vip" 
-            className={({ isActive }) => isActive ? 'active' : ''}
-          >
-            VIP
-          </NavLink>
-        </li>
-        <li>
-          <NavLink 
-            to="/contact" 
-            className={({ isActive }) => isActive ? 'active' : ''}
-          >
-            Contact
-          </NavLink>
-        </li>
-      </ul>
+      <div className="navbar-container">
+        <ul className="nav-links">
+          {navLinks.map((link, index) => (
+            <li key={index}>
+              <NavLink 
+                to={link.path} 
+                className={({ isActive }) => isActive ? 'active' : ''}
+                end={link.exact}
+              >
+                {link.label}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </div>
     </nav>
   );
 };
