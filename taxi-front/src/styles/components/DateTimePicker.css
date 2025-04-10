@@ -1,0 +1,75 @@
+.datetime-picker-container {
+    margin-bottom: 1.5rem;
+  }
+  
+  .datetime-picker {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .date-input-container,
+  .time-input-container {
+    flex: 1;
+  }
+  
+  .datetime-picker label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+  }
+  
+  .datetime-picker input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--mid-gray);
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem;
+    transition: var(--transition);
+    background-color: var(--white);
+  }
+  
+  .datetime-picker input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--primary-light);
+    outline: none;
+  }
+  
+  .datetime-picker input.error {
+    border-color: var(--error);
+    box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.1);
+  }
+  
+  .input-error {
+    color: var(--error);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+  
+  /* Fix pour l'apparence des champs date et time sur différents navigateurs */
+  input[type="date"],
+  input[type="time"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  
+  input[type="date"]::-webkit-calendar-picker-indicator,
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+  }
+  
+  input[type="date"]::-webkit-calendar-picker-indicator:hover,
+  input[type="time"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+  }
+  
+  /* Responsiveness */
+  @media (max-width: 576px) {
+    .datetime-picker {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }

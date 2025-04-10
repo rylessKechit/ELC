@@ -1,0 +1,97 @@
+.datetime-picker-container {
+    margin-bottom: 1.8rem;
+  }
+  
+  .datetime-picker {
+    display: flex;
+    gap: 1.2rem;
+  }
+  
+  .date-input-container,
+  .time-input-container {
+    flex: 1;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  
+  .date-input-container.focused,
+  .time-input-container.focused {
+    transform: translateY(-2px);
+  }
+  
+  .datetime-picker label {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+  }
+  
+  .datetime-picker input {
+    width: 100%;
+    padding: 0.95rem 1rem;
+    border: 1px solid var(--mid-gray);
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    background-color: rgba(30, 30, 30, 0.9);
+    color: var(--text-color);
+  }
+  
+  .datetime-picker input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+    outline: none;
+  }
+  
+  .datetime-picker input.error {
+    border-color: var(--error);
+    box-shadow: 0 0 10px rgba(244, 67, 54, 0.3);
+  }
+  
+  .input-error {
+    color: var(--error);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+  
+  /* Fix pour l'apparence des champs date et time sur différents navigateurs */
+  input[type="date"],
+  input[type="time"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  
+  input[type="date"]::-webkit-calendar-picker-indicator,
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.6;
+    filter: invert(0.8) sepia(1) saturate(5) hue-rotate(0deg);
+    transition: opacity 0.2s ease;
+  }
+  
+  input[type="date"]::-webkit-calendar-picker-indicator:hover,
+  input[type="time"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+    filter: invert(0.8) sepia(1) saturate(5) hue-rotate(0deg) brightness(1.2);
+  }
+  
+  /* Animations subtiles au hover */
+  .date-input-container:hover input,
+  .time-input-container:hover input {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+  }
+  
+  /* Responsive design */
+  @media (max-width: 576px) {
+    .datetime-picker {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  }
