@@ -26,7 +26,6 @@ const Navbar = ({ mobileMenuOpen }) => {
       ]
     },
     { path: '/flotte-vehicules', label: 'Notre Flotte' },
-    { path: '/experience-vip', label: 'Expérience VIP' },
     { path: '/a-propos', label: 'À Propos' },
     { path: '/contact', label: 'Contact' },
   ];
