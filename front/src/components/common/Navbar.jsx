@@ -1,13 +1,33 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../../styles/components/Navbar.css';
 
 const Navbar = ({ mobileMenuOpen }) => {
+  const [openDropdown, setOpenDropdown] = useState(null);
+
+  const toggleDropdown = (index) => {
+    if (openDropdown === index) {
+      setOpenDropdown(null);
+    } else {
+      setOpenDropdown(index);
+    }
+  };
+
   const navLinks = [
     { path: '/', label: 'Accueil', exact: true },
-    { path: '/trajets-aeroport-gare', label: 'Aéroport / Gare' },
-    { path: '/trajets-longues-distances', label: 'Longues Distances' },
-    { path: '/trajets-sur-mesure', label: 'Sur Mesure' },
-    { path: '/prestation-vip', label: 'VIP' },
+    {
+      label: 'Nos Services',
+      isDropdown: true,
+      items: [
+        { path: '/experience-vip', label: 'Transfert VIP' },
+        { path: '/services-evenements', label: 'Événements & Soirées' },
+        { path: '/services-longue-distance', label: 'Voyages Longue Distance' },
+        { path: '/services-affaires', label: 'Transport d\'Affaires' }
+      ]
+    },
+    { path: '/flotte-vehicules', label: 'Notre Flotte' },
+    { path: '/experience-vip', label: 'Expérience VIP' },
+    { path: '/a-propos', label: 'À Propos' },
     { path: '/contact', label: 'Contact' },
   ];
 
@@ -16,14 +36,41 @@ const Navbar = ({ mobileMenuOpen }) => {
       <div className="navbar-container">
         <ul className="nav-links">
           {navLinks.map((link, index) => (
-            <li key={index}>
-              <NavLink 
-                to={link.path} 
-                className={({ isActive }) => isActive ? 'active' : ''}
-                end={link.exact}
-              >
-                {link.label}
-              </NavLink>
+            <li 
+              key={index} 
+              className={link.isDropdown ? `nav-dropdown ${openDropdown === index ? 'open' : ''}` : ''}
+            >
+              {link.isDropdown ? (
+                <>
+                  <span 
+                    className="dropdown-toggle" 
+                    onClick={() => toggleDropdown(index)}
+                  >
+                    {link.label}
+                    <i className={`fas fa-chevron-down ${openDropdown === index ? 'rotate' : ''}`}></i>
+                  </span>
+                  <div className="nav-dropdown-content">
+                    {link.items.map((item, itemIndex) => (
+                      <NavLink 
+                        key={itemIndex}
+                        to={item.path} 
+                        className={({ isActive }) => isActive ? 'active' : ''}
+                        onClick={() => setOpenDropdown(null)} // Ferme le menu après clic sur mobile
+                      >
+                        {item.label}
+                      </NavLink>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <NavLink 
+                  to={link.path} 
+                  className={({ isActive }) => isActive ? 'active' : ''}
+                  end={link.exact}
+                >
+                  {link.label}
+                </NavLink>
+              )}
             </li>
           ))}
         </ul>

@@ -9,6 +9,7 @@ import CustomTransferPage from './pages/CustomTransferPage';
 import VipServicePage from './pages/VipServicePage';
 import ContactPage from './pages/ContactPage';
 import './styles/global.css';
+import './animations.js'
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
