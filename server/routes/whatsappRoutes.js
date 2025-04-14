@@ -1,7 +1,6 @@
 // server/routes/whatsappRoutes.js
 const express = require('express');
 const router = express.Router();
-const whatsappService = require('../services/whatsappService');
 
 // @route   GET /api/whatsapp/status
 // @desc    Obtenir le statut de la connexion WhatsApp

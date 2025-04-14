@@ -126,6 +126,6 @@ class WhatsAppService {
 }
 
 // Créer une instance singleton
-const whatsappService = new WhatsAppService();
+//const whatsappService = new WhatsAppService();
 
 module.exports = whatsappService;

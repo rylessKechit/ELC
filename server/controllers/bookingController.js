@@ -3,7 +3,6 @@ const Booking = require('../models/Booking');
 const GoogleMapsService = require('../services/googleMapsService');
 const nodemailer = require('nodemailer');
 const config = require('../config/environment');
-const whatsappService = require('../services/whatsappService');
 
 // @desc    Create a new booking
 // @route   POST /api/bookings
