@@ -101,48 +101,6 @@ const AboutPage = () => {
     }
   ];
 
-  // Statistiques de l'entreprise
-  const companyStats = [
-    { value: "15+", label: "Années d'expérience" },
-    { value: "25,000+", label: "Trajets réalisés" },
-    { value: "98.7%", label: "Taux de satisfaction client" },
-    { value: "100%", label: "Engagement qualité" }
-  ];
-
-  // Jalons historiques
-  const timeline = [
-    {
-      year: "2009",
-      title: "Création de l'entreprise",
-      description: "Fondation avec une vision claire : offrir un service de transport premium inégalé."
-    },
-    {
-      year: "2012",
-      title: "Expansion de la flotte",
-      description: "Intégration des premiers véhicules premium pour répondre à une clientèle exigeante."
-    },
-    {
-      year: "2015",
-      title: "Service corporate",
-      description: "Lancement de services dédiés aux entreprises et développement de partenariats stratégiques."
-    },
-    {
-      year: "2018",
-      title: "Engagement écologique",
-      description: "Introduction des premiers véhicules électriques dans notre flotte et mise en place d'une politique environnementale."
-    },
-    {
-      year: "2020",
-      title: "Expansion internationale",
-      description: "Développement du réseau de partenaires à l'international pour assurer un service cohérent partout en Europe."
-    },
-    {
-      year: "2023",
-      title: "Innovation digitale",
-      description: "Lancement de notre plateforme de réservation avancée et application mobile pour une expérience client optimisée."
-    }
-  ];
-
   return (
     <div className="service-page about-page">
       <div 
@@ -169,8 +127,6 @@ const AboutPage = () => {
               <h2>NOTRE HISTOIRE</h2>
             </div>
             <div className="story-text slide-in-left">
-              <div className="gold-accent">
-              </div>
               <p>
                 Fondée en 2009 par Pierre Guttin, notre entreprise est née d'une passion pour l'excellence et 
                 d'une vision claire : transformer le transport privé en une expérience exceptionnelle où chaque 
@@ -187,17 +143,21 @@ const AboutPage = () => {
                 notre vision de l'excellence.
               </p>
               <p>
-                Aujourd'hui, notre entreprise continue d'évoluer, en intégrant les dernières innovations technologiques 
-                et en développant de nouveaux services, tout en restant fidèle à ce qui a fait notre succès : un service 
+                Aujourd'hui, notre entreprise continue d'évoluer, en intégrant les dernières innovations et en 
+                développant de nouveaux services, tout en restant fidèle à ce qui a fait notre succès : un service 
                 personnalisé d'exception, une attention méticuleuse aux détails et une discrétion absolue.
               </p>
             </div>
             <div className="story-image slide-in-right">
               <img src="/assets/images/about-founder.jpg" alt="Notre fondateur" />
-              <div className="founder-quote">
-                <p>"Notre mission est de créer une expérience de transport qui dépasse le simple déplacement pour devenir un moment privilégié."</p>
-                <span className="quote-author">Pierre Guttin, Fondateur</span>
-              </div>
+            </div>
+          </div>
+          
+          {/* Citation du fondateur séparée pour éviter le chevauchement */}
+          <div className="quote-container">
+            <div className="founder-quote-separate">
+              <p>"Notre mission est de créer une expérience de transport qui dépasse le simple déplacement pour devenir un moment privilégié."</p>
+              <span className="quote-author">Pierre Guttin, Fondateur</span>
             </div>
           </div>
         </div>
@@ -297,95 +257,6 @@ const AboutPage = () => {
                 </div>
               </div>
             ))}
-          </div>
-          
-          <div className="team-cta">
-            <h3>Une équipe dévouée à votre service</h3>
-            <p>Chaque membre de notre équipe, des chauffeurs au service client, s'engage à vous offrir une expérience exceptionnelle.</p>
-            <Link to="/contact" className="cta-button">
-              Contactez notre équipe
-            </Link>
-          </div>
-        </div>
-      </div>
-      
-      <div ref={statsRef} className={`stats-section ${statsVisible ? 'animate' : ''}`}>
-        <div className="container">
-          <div className="stats-grid">
-            {companyStats.map((stat, index) => (
-              <div 
-                key={index} 
-                className={`stat-item ${statsVisible ? 'visible' : ''}`}
-                style={{animationDelay: `${0.2 * index}s`}}
-              >
-                <div className="stat-value">{stat.value}</div>
-                <div className="stat-label">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      
-      <div ref={timelineRef} className={`service-details timeline-section ${timelineVisible ? 'animate' : ''}`}>
-        <div className="container">
-          <h2 className="fade-in">NOTRE PARCOURS</h2>
-          <p className="subtitle fade-in">Les étapes clés de notre histoire</p>
-          
-          <div className="timeline">
-            {timeline.map((milestone, index) => (
-              <div 
-                key={index} 
-                className={`timeline-item ${index % 2 === 0 ? 'left' : 'right'} ${timelineVisible ? 'visible' : ''}`}
-                style={{animationDelay: `${0.3 * index}s`}}
-              >
-                <div className="timeline-content">
-                  <div className="timeline-year">{milestone.year}</div>
-                  <h3>{milestone.title}</h3>
-                  <p>{milestone.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      
-      <div className="certifications-section">
-        <div className="container">
-          <h2>NOS CERTIFICATIONS & GARANTIES</h2>
-          <p className="subtitle">Notre engagement envers l'excellence est reconnu et certifié</p>
-          
-          <div className="certifications-grid">
-            <div className="certification-item">
-              <div className="certification-icon">
-                <i className="fas fa-certificate"></i>
-              </div>
-              <h3>ISO 9001:2015</h3>
-              <p>Certification internationale de système de management de la qualité</p>
-            </div>
-            
-            <div className="certification-item">
-              <div className="certification-icon">
-                <i className="fas fa-shield-alt"></i>
-              </div>
-              <h3>Garantie Ponctualité</h3>
-              <p>Engagement formel sur la ponctualité avec compensation en cas de retard</p>
-            </div>
-            
-            <div className="certification-item">
-              <div className="certification-icon">
-                <i className="fas fa-leaf"></i>
-              </div>
-              <h3>Certification Éco-Mobilité</h3>
-              <p>Reconnaissance de notre démarche écologique et de notre flotte verte</p>
-            </div>
-            
-            <div className="certification-item">
-              <div className="certification-icon">
-                <i className="fas fa-handshake"></i>
-              </div>
-              <h3>Charte d'Excellence</h3>
-              <p>Adhésion à la charte professionnelle du transport VIP</p>
-            </div>
           </div>
         </div>
       </div>

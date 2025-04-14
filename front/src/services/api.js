@@ -1,9 +1,10 @@
 import axios from 'axios';
+export const API_URL = process.env.REACT_APP_API_URL;
 
 // Création d'une instance axois avec la bonne URL de base
 // Ici nous utilisons explicitement le port 4000 où le serveur backend s'exécute
 const api = axios.create({
-  baseURL: 'http://localhost:4000/api',
+  baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
   },

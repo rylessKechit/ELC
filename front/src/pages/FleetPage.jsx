@@ -50,7 +50,7 @@ const FleetPage = () => {
       categoryName: 'Berline de Luxe',
       passengers: 3,
       luggage: 3,
-      description: "La Mercedes Classe E incarne l'équilibre parfait entre élégance et technologie, offrant une expérience de conduite raffinée et confortable. Son habitacle spacieux et son niveau de finition exemplaire vous garantissent un voyage dans les meilleures conditions.",
+      description: "La Mercedes Classe E incarne l'équilibre parfait entre élégance et technologie, offrant une expérience de conduite raffinée et confortable.",
       features: [
         'Sièges en cuir confortables',
         'Climatisation bi-zone',
@@ -60,10 +60,6 @@ const FleetPage = () => {
         'Bouteilles d\'eau offertes'
       ],
       image: '/assets/images/mercedes-e-class.jpg',
-      additionalImages: [
-        '/assets/images/mercedes-e-interior.jpg',
-        '/assets/images/mercedes-e-rear.jpg'
-      ]
     },
     {
       id: 'tesla-model3',
@@ -72,20 +68,16 @@ const FleetPage = () => {
       categoryName: 'Véhicule Électrique',
       passengers: 4,
       luggage: 4,
-      description: "La Tesla Model 3 représente l'avenir du transport premium avec sa motorisation 100% électrique. Alliant performances exceptionnelles, technologie de pointe et respect de l'environnement, elle offre une expérience de transport unique et responsable.",
+      description: "La Tesla Model 3 représente l'avenir du transport premium avec sa motorisation 100% électrique et ses technologies de pointe.",
       features: [
         'Motorisation 100% électrique',
         'Écran tactile central 15"',
         'Toit panoramique en verre',
-        'Intérieur minimaliste et élégant',
+        'Intérieur minimaliste',
         'Accélération 0-100 km/h en 3,3s',
         'Wifi et streaming à bord'
       ],
       image: '/assets/images/tesla-model-3.jpg',
-      additionalImages: [
-        '/assets/images/tesla-model3-interior.jpg',
-        '/assets/images/tesla-model3-rear.jpg'
-      ]
     },
     {
       id: 'mercedes-s',
@@ -94,7 +86,7 @@ const FleetPage = () => {
       categoryName: 'Berline Premium',
       passengers: 3,
       luggage: 3,
-      description: "La Mercedes Classe S représente le summum du luxe automobile. Son confort exceptionnel, ses technologies avancées et son silence de fonctionnement en font le choix idéal pour les clients les plus exigeants. Chaque détail est pensé pour offrir une expérience de transport incomparable.",
+      description: "La Mercedes Classe S représente le summum du luxe automobile avec son confort exceptionnel et ses technologies avancées.",
       features: [
         'Sièges massants et climatisés',
         'Système audio Burmester 4D',
@@ -104,10 +96,6 @@ const FleetPage = () => {
         'Isolation phonique renforcée'
       ],
       image: '/assets/images/mercedes-s-class.jpg',
-      additionalImages: [
-        '/assets/images/mercedes-s-interior.jpg',
-        '/assets/images/mercedes-s-rear.jpg'
-      ]
     },
     {
       id: 'bmw-7',
@@ -116,20 +104,16 @@ const FleetPage = () => {
       categoryName: 'Berline Premium',
       passengers: 3,
       luggage: 3,
-      description: "La BMW Série 7 offre une expérience de conduite exceptionnelle alliant sportivité et raffinement. Son intérieur somptueux et ses technologies innovantes, notamment son système de divertissement haut de gamme, vous garantissent un voyage inoubliable.",
+      description: "La BMW Série 7 offre une expérience de conduite exceptionnelle alliant sportivité et raffinement pour vos déplacements.",
       features: [
         'Sièges Executive Lounge',
-        'Sky Lounge avec toit panoramique',
-        'Système de divertissement arrière',
+        'Sky Lounge panoramique',
+        'Système divertissement arrière',
         'Commande gestuelle',
         'Assistant personnel intelligent',
         'Parfumeur d\'ambiance'
       ],
       image: '/assets/images/bmw-7-series.jpg',
-      additionalImages: [
-        '/assets/images/bmw-7-interior.jpg',
-        '/assets/images/bmw-7-rear.jpg'
-      ]
     },
     {
       id: 'bmw-x5',
@@ -138,20 +122,16 @@ const FleetPage = () => {
       categoryName: 'SUV de Luxe',
       passengers: 5,
       luggage: 5,
-      description: "Le BMW X5 combine élégance et praticité avec son espace intérieur généreux et sa position de conduite surélevée. Parfait pour les groupes ou les familles, il offre un grand confort à tous les passagers ainsi qu'une capacité de bagages importante.",
+      description: "Le BMW X5 combine élégance et praticité avec son espace intérieur généreux et sa position de conduite surélevée.",
       features: [
         'Intérieur spacieux et modulable',
         'Position de conduite surélevée',
         'Système audio Harman Kardon',
-        'Grand coffre pour les bagages',
+        'Grand coffre pour bagages',
         'Climatisation 4 zones',
-        'Vitres teintées pour plus d\'intimité'
+        'Vitres teintées'
       ],
       image: '/assets/images/bmw-x5.jpg',
-      additionalImages: [
-        '/assets/images/bmw-x5-interior.jpg',
-        '/assets/images/bmw-x5-rear.jpg'
-      ]
     },
     {
       id: 'mercedes-v',
@@ -160,20 +140,16 @@ const FleetPage = () => {
       categoryName: 'Van VIP',
       passengers: 7,
       luggage: 7,
-      description: "Le Mercedes Classe V est la solution idéale pour les groupes jusqu'à 7 personnes. Configuré comme un salon mobile avec des sièges face-à-face, il combine espace, confort et élégance. Parfait pour les voyages d'affaires en groupe ou les transferts familiaux.",
+      description: "Le Mercedes Classe V transformé en salon mobile avec des sièges face-à-face pour les groupes jusqu'à 7 personnes.",
       features: [
         'Configuration salon face-à-face',
         'Tables de travail intégrées',
         'Réfrigérateur et porte-gobelets',
         'Prises 220V pour ordinateurs',
-        'Éclairage d\'ambiance personnalisable',
+        'Éclairage d\'ambiance',
         'Séparation chauffeur'
       ],
       image: '/assets/images/mercedes-v-class.jpg',
-      additionalImages: [
-        '/assets/images/mercedes-v-interior.jpg',
-        '/assets/images/mercedes-v-rear.jpg'
-      ]
     }
   ];
 
@@ -191,13 +167,13 @@ const FleetPage = () => {
       >
         <div className="service-hero-overlay"></div>
         <div className="service-hero-content">
-          <h1 className="slide-in-left">NOTRE FLOTTE D'EXCEPTION</h1>
+          <h1 className="slide-in-left">DÉCOUVREZ NOS VÉHICULES</h1>
           <div className="separator">
             <span className="separator-line"></span>
             <span className="separator-icon"><i className="fas fa-car"></i></span>
             <span className="separator-line"></span>
           </div>
-          <p className="slide-in-right">Des véhicules haut de gamme pour une expérience de transport incomparable</p>
+          <p className="slide-in-right">Sélectionnez le véhicule parfait pour votre prochain trajet</p>
         </div>
       </div>
       
@@ -344,7 +320,7 @@ const FleetPage = () => {
                     </ul>
                   </div>
                   <div className="vehicle-actions">
-                    <button className="vehicle-details-btn" onClick={() => window.location.href = `/flotte-vehicules/${vehicle.id}`}>
+                    <button className="vehicle-details-btn">
                       Voir les détails
                     </button>
                     <Link to="/contact" className="vehicle-book-btn">
@@ -354,153 +330,6 @@ const FleetPage = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </div>
-      
-      <div className="fleet-comparison">
-        <div className="container">
-          <h2>COMPARATIF DE NOTRE FLOTTE</h2>
-          <p className="subtitle">Trouvez le véhicule parfaitement adapté à vos besoins</p>
-          
-          <div className="comparison-table-container">
-            <table className="comparison-table">
-              <thead>
-                <tr>
-                  <th>Véhicule</th>
-                  <th>Catégorie</th>
-                  <th>Passagers</th>
-                  <th>Bagages</th>
-                  <th>Idéal pour</th>
-                  <th>Prix indicatif</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Mercedes Classe E</td>
-                  <td>Berline de Luxe</td>
-                  <td>3</td>
-                  <td>3</td>
-                  <td>Trajets professionnels, Aéroport</td>
-                  <td>€€</td>
-                </tr>
-                <tr>
-                  <td>Tesla Model 3</td>
-                  <td>Véhicule Électrique</td>
-                  <td>4</td>
-                  <td>4</td>
-                  <td>Trajets éco-responsables, Ville</td>
-                  <td>€€</td>
-                </tr>
-                <tr>
-                  <td>Mercedes Classe S</td>
-                  <td>Berline Premium</td>
-                  <td>3</td>
-                  <td>3</td>
-                  <td>VIP, Événements prestigieux</td>
-                  <td>€€€</td>
-                </tr>
-                <tr>
-                  <td>BMW Série 7</td>
-                  <td>Berline Premium</td>
-                  <td>3</td>
-                  <td>3</td>
-                  <td>VIP, Longue distance confort</td>
-                  <td>€€€</td>
-                </tr>
-                <tr>
-                  <td>BMW X5</td>
-                  <td>SUV de Luxe</td>
-                  <td>5</td>
-                  <td>5</td>
-                  <td>Familles, Groupes, Bagages volumineux</td>
-                  <td>€€€</td>
-                </tr>
-                <tr>
-                  <td>Mercedes Classe V</td>
-                  <td>Van VIP</td>
-                  <td>7</td>
-                  <td>7</td>
-                  <td>Groupes, Équipes professionnelles</td>
-                  <td>€€€€</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          
-          <div className="price-legend">
-            <span><strong>Prix indicatif :</strong></span>
-            <span className="price-indicator">€ = Économique</span>
-            <span className="price-indicator">€€ = Standard</span>
-            <span className="price-indicator">€€€ = Premium</span>
-            <span className="price-indicator">€€€€ = Luxe</span>
-          </div>
-        </div>
-      </div>
-      
-      <div className="fleet-care">
-        <div className="container">
-          <div className="care-content">
-            <div className="care-image">
-              <img src="/assets/images/vehicle-maintenance.jpg" alt="Entretien de notre flotte" />
-            </div>
-            <div className="care-text">
-              <h2>ENTRETIEN & MAINTENANCE</h2>
-              <p>
-                L'excellence de notre service repose sur une flotte impeccablement entretenue. 
-                Chaque véhicule fait l'objet d'un protocole d'entretien rigoureux:
-              </p>
-              <ul className="care-list">
-                <li>
-                  <i className="fas fa-calendar-check"></i>
-                  <div>
-                    <h4>Maintenance préventive</h4>
-                    <p>Révisions régulières selon un calendrier strict, dépassant les recommandations des constructeurs</p>
-                  </div>
-                </li>
-                <li>
-                  <i className="fas fa-soap"></i>
-                  <div>
-                    <h4>Nettoyage professionnel</h4>
-                    <p>Nettoyage complet intérieur et extérieur après chaque service avec des produits écologiques haut de gamme</p>
-                  </div>
-                </li>
-                <li>
-                  <i className="fas fa-clipboard-check"></i>
-                  <div>
-                    <h4>Contrôle qualité</h4>
-                    <p>Inspection de 50 points avant chaque mise en service pour garantir une expérience parfaite</p>
-                  </div>
-                </li>
-                <li>
-                  <i className="fas fa-air-freshener"></i>
-                  <div>
-                    <h4>Ambiance intérieure</h4>
-                    <p>Parfums d'ambiance subtils et élégants, température pré-réglée selon la saison</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div className="client-testimonial">
-        <div className="container">
-          <div className="testimonial-content">
-            <div className="testimonial-quote">
-              <i className="fas fa-quote-left"></i>
-            </div>
-            <p>
-              "J'ai eu l'occasion de tester plusieurs véhicules de la flotte et chaque expérience a été 
-              remarquable. Les voitures sont non seulement magnifiques mais aussi dans un état impeccable. 
-              La Tesla Model 3 pour mes déplacements en ville et la Mercedes Classe S pour mes voyages 
-              d'affaires sont désormais mes choix privilégiés. Un service qui allie parfaitement luxe et fiabilité."
-            </p>
-            <div className="testimonial-author">
-              <div className="author-name">Nicolas R.</div>
-              <div className="author-title">Directeur Marketing</div>
-            </div>
           </div>
         </div>
       </div>

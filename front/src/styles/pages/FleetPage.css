@@ -584,3 +584,159 @@
       flex-direction: column;
     }
   }
+
+  /* Modifications pour les cartes de véhicules */
+.vehicle-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  margin-bottom: 25px;
+  transition: all 0.3s ease;
+  height: auto;
+  max-height: 280px;
+}
+
+.vehicle-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.vehicle-image {
+  flex: 0 0 35%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.vehicle-details {
+  flex: 0 0 65%;
+  padding: 20px;
+}
+
+.vehicle-specs {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.vehicle-description {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-bottom: 15px;
+  max-height: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.vehicle-features {
+  margin-bottom: 15px;
+}
+
+.vehicle-features ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.vehicle-features li {
+  font-size: 0.8rem;
+  flex: 0 0 calc(33.333% - 10px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vehicle-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .vehicle-card {
+    flex-direction: column;
+    max-height: none;
+  }
+  
+  .vehicle-image {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+  
+  .vehicle-details {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+}
+
+/* Modifications pour la section des caractéristiques Premium */
+.premium-features {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: 50px 0;
+  gap: 20px;
+}
+
+.premium-feature-item {
+  flex: 1;
+  background-color: var(--white);
+  border-radius: 8px;
+  padding: 25px 20px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.premium-feature-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.premium-feature-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgba(201, 169, 110, 0.1);
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  font-size: 1.5rem;
+}
+
+.premium-feature-title {
+  font-size: 1.1rem;
+  color: var(--secondary-color);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.premium-feature-description {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .premium-features {
+    flex-wrap: wrap;
+  }
+  
+  .premium-feature-item {
+    flex: 0 0 calc(50% - 10px);
+  }
+}
+
+@media (max-width: 576px) {
+  .premium-feature-item {
+    flex: 0 0 100%;
+  }
+}
