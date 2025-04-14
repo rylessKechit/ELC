@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/pages/AboutPage.css';
+import '../styles/pages/ServicePage.css';
 
 // Animation utility hook
 const useIntersectionObserver = (options = {}) => {
@@ -143,14 +144,14 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="about-page">
+    <div className="service-page about-page">
       <div 
         ref={headerRef} 
-        className={`page-hero ${headerVisible ? 'animate' : ''}`}
+        className={`service-hero ${headerVisible ? 'animate' : ''}`}
         style={{ backgroundImage: 'url(/assets/images/about-hero.jpg)' }}
       >
-        <div className="hero-overlay"></div>
-        <div className="hero-content">
+        <div className="service-hero-overlay"></div>
+        <div className="service-hero-content">
           <h1 className="slide-in-left">À PROPOS DE NOUS</h1>
           <div className="separator">
             <span className="separator-line"></span>
@@ -161,12 +162,14 @@ const AboutPage = () => {
         </div>
       </div>
       
-      <div ref={storyRef} className={`our-story-section ${storyVisible ? 'animate' : ''}`}>
+      <div ref={storyRef} className={`service-overview ${storyVisible ? 'animate' : ''}`}>
         <div className="container">
-          <div className="story-content">
+          <div className="service-overview-content">
+            <div className="gold-accent slide-in-left">
+              <h2>NOTRE HISTOIRE</h2>
+            </div>
             <div className="story-text slide-in-left">
               <div className="gold-accent">
-                <h2>NOTRE HISTOIRE</h2>
               </div>
               <p>
                 Fondée en 2009 par Pierre Guttin, notre entreprise est née d'une passion pour l'excellence et 
@@ -200,7 +203,7 @@ const AboutPage = () => {
         </div>
       </div>
       
-      <div ref={valuesRef} className={`values-section ${valuesVisible ? 'animate' : ''}`}>
+      <div ref={valuesRef} className={`service-details values-section ${valuesVisible ? 'animate' : ''}`}>
         <div className="container">
           <h2 className="fade-in">NOS VALEURS</h2>
           <p className="subtitle fade-in">Les principes qui guident chacune de nos actions</p>
@@ -272,7 +275,7 @@ const AboutPage = () => {
         </div>
       </div>
       
-      <div ref={teamRef} className={`team-section ${teamVisible ? 'animate' : ''}`}>
+      <div ref={teamRef} className={`service-details team-section ${teamVisible ? 'animate' : ''}`}>
         <div className="container">
           <h2 className="fade-in">NOTRE ÉQUIPE</h2>
           <p className="subtitle fade-in">Des professionnels dévoués qui donnent vie à notre vision</p>
@@ -323,7 +326,7 @@ const AboutPage = () => {
         </div>
       </div>
       
-      <div ref={timelineRef} className={`timeline-section ${timelineVisible ? 'animate' : ''}`}>
+      <div ref={timelineRef} className={`service-details timeline-section ${timelineVisible ? 'animate' : ''}`}>
         <div className="container">
           <h2 className="fade-in">NOTRE PARCOURS</h2>
           <p className="subtitle fade-in">Les étapes clés de notre histoire</p>

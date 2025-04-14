@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import BookingForm from '../components/booking/BookingForm';
 import '../styles/pages/FleetPage.css';
+import '../styles/pages/ServicePage.css';
 
 // Animation utility hook
 const useIntersectionObserver = (options = {}) => {
@@ -182,14 +183,14 @@ const FleetPage = () => {
     : fleetData.filter(vehicle => vehicle.category === activeFilter);
 
   return (
-    <div className="fleet-page">
+    <div className="service-page fleet-page">
       <div 
         ref={headerRef} 
-        className={`page-hero ${headerVisible ? 'animate' : ''}`}
+        className={`service-hero ${headerVisible ? 'animate' : ''}`}
         style={{ backgroundImage: 'url(/assets/images/fleet-hero.jpg)' }}
       >
-        <div className="hero-overlay"></div>
-        <div className="hero-content">
+        <div className="service-hero-overlay"></div>
+        <div className="service-hero-content">
           <h1 className="slide-in-left">NOTRE FLOTTE D'EXCEPTION</h1>
           <div className="separator">
             <span className="separator-line"></span>
@@ -200,9 +201,9 @@ const FleetPage = () => {
         </div>
       </div>
       
-      <div ref={overviewRef} className={`fleet-overview ${overviewVisible ? 'animate' : ''}`}>
+      <div ref={overviewRef} className={`service-details fleet-overview ${overviewVisible ? 'animate' : ''}`}>
         <div className="container">
-          <div className="fleet-overview-content">
+          <div className="service-overview-content">
             <div className="gold-accent slide-in-left">
               <h2>UNE SÉLECTION EXIGEANTE DE VÉHICULES PREMIUM</h2>
               <p className="subtitle">Le parfait équilibre entre luxe, confort et fiabilité</p>
@@ -266,7 +267,7 @@ const FleetPage = () => {
         </div>
       </div>
       
-      <div ref={fleetRef} className={`fleet-showcase ${fleetVisible ? 'animate' : ''}`}>
+      <div ref={fleetRef} className={`service-details fleet-showcase ${fleetVisible ? 'animate' : ''}`}>
         <div className="container">
           <h2 className="fade-in">DÉCOUVREZ NOS VÉHICULES</h2>
           <p className="subtitle fade-in">Sélectionnez le véhicule parfait pour votre prochain trajet</p>
