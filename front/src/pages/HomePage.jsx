@@ -2,6 +2,11 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import BookingForm from '../components/booking/BookingForm';
 import '../styles/pages/HomePage.css';
+import TeslaModel3 from '../assets/images/tesla-model-3.png';
+import MercedesClassS from '../assets/images/mercedes-classe-s.png';
+import BmwSerie7 from '../assets/images/bmw-7-series.png';
+import MercedesVClass from '../assets/images/mercedes-v-class.png';
+import ExperienceVip from '../assets/images/experience-vip.jpg';
 
 // Animation utility
 const useIntersectionObserver = (options = {}) => {
@@ -62,20 +67,26 @@ const HomePage = () => {
   // Vehicle fleet carousel items
   const fleetItems = [
     {
+      name: 'Tesla Model 3',
+      image: TeslaModel3,
+      description: 'Élégance et confort inégalés pour vos déplacements d\'affaires et événements prestigieux.',
+      features: ['Jusqu\'à 3 passagers', 'Wi-Fi gratuit', 'Boissons fraîches', 'Sièges en cuir premium']
+    },
+    {
       name: 'Mercedes-Benz Classe S',
-      image: '/assets/images/mercedes-s-class.jpg',
+      image: MercedesClassS,
       description: 'Élégance et confort inégalés pour vos déplacements d\'affaires et événements prestigieux.',
       features: ['Jusqu\'à 3 passagers', 'Wi-Fi gratuit', 'Boissons fraîches', 'Sièges en cuir premium']
     },
     {
       name: 'BMW Série 7',
-      image: '/assets/images/bmw-7-series.jpg',
+      image: BmwSerie7,
       description: 'L\'alliance parfaite entre technologie de pointe et luxe raffiné pour vos trajets professionnels.',
       features: ['Jusqu\'à 3 passagers', 'Écrans tactiles individuels', 'Système audio haut de gamme', 'Ambiance lumineuse personnalisable']
     },
     {
       name: 'Mercedes-Benz Classe V VIP',
-      image: '/assets/images/mercedes-v-class.jpg',
+      image: MercedesVClass,
       description: 'Espace généreux et aménagements luxueux pour vos déplacements en groupe.',
       features: ['Jusqu\'à 7 passagers', 'Configuration salon privé', 'Bar intégré', 'Isolation acoustique renforcée']
     }
@@ -326,7 +337,7 @@ const HomePage = () => {
             </div>
             
             <div className={`experience-image slide-in-right ${experienceVisible ? 'visible' : ''}`}>
-              <img src="/assets/images/vip-experience.jpg" alt="Expérience VIP" loading="lazy" />
+              <img src={ExperienceVip} alt="Expérience VIP" loading="lazy" />
             </div>
           </div>
         </div>

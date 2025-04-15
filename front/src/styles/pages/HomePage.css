@@ -6,7 +6,9 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  background-color: var(--secondary-color);
+  background-image: url('../../assets/images/hero.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .hero-section.animate .slide-in-left {

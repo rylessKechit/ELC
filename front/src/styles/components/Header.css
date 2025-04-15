@@ -41,14 +41,14 @@
 }
 
 .logo {
-  height: 50px;
+  height: 75px;
   width: auto;
   transition: all 0.3s ease;
   filter: brightness(0) invert(1);
 }
 
 .scrolled .logo {
-  height: 45px;
+  height: 50px;
 }
 
 .header-right {
@@ -206,7 +206,7 @@
   }
   
   .logo {
-    height: 40px;
+    height: 50px;
   }
   
   .scrolled .logo {
