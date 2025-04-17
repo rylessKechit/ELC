@@ -2,6 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import BookingForm from '../components/booking/BookingForm';
 import '../styles/pages/ServicePage.css';
+import redCarpetArrival from '../assets/images/red-carpet-arrival.jpg'; 
+import weddingCar from '../assets/images/wedding-car.jpg';
+import galaEvent from '../assets/images/gala-event.jpg';
+import corporateEvent from '../assets/images/corporate-event.jpg';
 
 // Animation utility hook
 const useIntersectionObserver = (options = {}) => {
@@ -50,7 +54,7 @@ const EventsServicePage = () => {
       <div 
         ref={headerRef} 
         className={`service-hero ${headerVisible ? 'animate' : ''}`}
-        style={{ backgroundImage: 'url(/assets/images/red-carpet-arrival.jpg)' }}
+        style={{ backgroundImage: `url(${redCarpetArrival})` }}
       >
         <div className="service-hero-overlay"></div>
         <div className="service-hero-content">
@@ -174,13 +178,13 @@ const EventsServicePage = () => {
             </div>
             
             <div className="service-detail-image slide-in-right">
-              <img src="/assets/images/wedding-car.jpg" alt="Service mariage" loading="lazy" />
+              <img src={weddingCar} alt="Service mariage" loading="lazy" />
             </div>
           </div>
           
           <div className="services-grid reverse">
             <div className="service-detail-image slide-in-left">
-              <img src="/assets/images/gala-event.jpg" alt="Gala et cérémonies" loading="lazy" />
+              <img src={galaEvent} alt="Gala et cérémonies" loading="lazy" />
             </div>
             
             <div className="service-detail-card slide-in-right">
@@ -228,7 +232,7 @@ const EventsServicePage = () => {
             </div>
             
             <div className="service-detail-image slide-in-right">
-              <img src="/assets/images/corporate-event.jpg" alt="Événement corporate" loading="lazy" />
+              <img src={corporateEvent} alt="Événement corporate" loading="lazy" />
             </div>
           </div>
         </div>

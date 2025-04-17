@@ -7,6 +7,11 @@ import MercedesClassS from '../assets/images/mercedes-classe-s.png';
 import BmwSerie7 from '../assets/images/bmw-7-series.png';
 import MercedesVClass from '../assets/images/mercedes-v-class.png';
 import ExperienceVip from '../assets/images/experience-vip.jpg';
+import logoCannesFestival from '../assets/images/logo-cannes-festival.png';
+import logoRitzParis from '../assets/images/logo-ritz-paris.png';
+import logoLouisVuitton from '../assets/images/logo-louis-vuitton.png';
+import logoChanel from '../assets/images/logo-chanel.png';
+import logoAirFrance from '../assets/images/logo-air-france.png';
 
 // Animation utility
 const useIntersectionObserver = (options = {}) => {
@@ -45,6 +50,14 @@ const HomePage = () => {
   const [testimonialsRef, testimonialsVisible] = useIntersectionObserver();
   const [bookingRef, bookingVisible] = useIntersectionObserver();
   const [partnersRef, partnersVisible] = useIntersectionObserver();
+
+  useEffect(() => {
+    document.title = "Elysian Luxury Chauffeurs - Service de chauffeur privé haut de gamme";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Elysian Luxury Chauffeurs vous offre un service de transport VIP sur mesure pour vos déplacements professionnels, événements prestigieux et voyages longue distance.');
+    }
+  }, []);
 
   // Background video for hero
   const videoBackground = 'https://example.com/luxury-car-video.mp4'; // Remplacez par URL vidéo réelle
@@ -142,9 +155,9 @@ const HomePage = () => {
         
         <div className="hero-content">
           <h1 className="slide-in-left">
-            <span className="text-primary">EXCELLENCE</span> & ÉLÉGANCE
+            <span className="text-primary">ELYSIAN</span>  LUXURY CHAUFFEURS
           </h1>
-          <p className="subtitle fade-in">Transport VIP pour une clientèle d'exception</p>
+          <p className="subtitle fade-in">L'excellence du transport VIP pour une clientèle d'exception</p>
           <p className="slide-in-right">
             Service de chauffeur privé haut de gamme pour vos déplacements professionnels, 
             événements prestigieux et voyages d'affaires.
@@ -425,19 +438,19 @@ const HomePage = () => {
           
           <div className={`partners-logos fade-in ${partnersVisible ? 'visible' : ''}`}>
             <div className="partner-logo">
-              <img src="/assets/images/logo-cannes-festival.png" alt="Festival de Cannes" loading="lazy" />
+              <img src={logoCannesFestival} alt="Festival de Cannes" loading="lazy" />
             </div>
             <div className="partner-logo">
-              <img src="/assets/images/logo-ritz-paris.png" alt="Ritz Paris" loading="lazy" />
+              <img src={logoRitzParis} alt="Ritz Paris" loading="lazy" />
             </div>
             <div className="partner-logo">
-              <img src="/assets/images/logo-louis-vuitton.png" alt="Louis Vuitton" loading="lazy" />
+              <img src={logoLouisVuitton} alt="Louis Vuitton" loading="lazy" />
             </div>
             <div className="partner-logo">
-              <img src="/assets/images/logo-chanel.png" alt="Chanel" loading="lazy" />
+              <img src={logoChanel} alt="Chanel" loading="lazy" />
             </div>
             <div className="partner-logo">
-              <img src="/assets/images/logo-air-france.png" alt="Air France" loading="lazy" />
+              <img src={logoAirFrance} alt="Air France" loading="lazy" />
             </div>
           </div>
         </div>

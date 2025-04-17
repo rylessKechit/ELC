@@ -1,10 +1,10 @@
 /* Base styles and resets */
 :root {
   /* Nouvelle palette de couleurs premium */
-  --primary-color: #c9a96e; /* Or élégant */
-  --primary-dark: #b08d50; /* Or foncé */
-  --primary-light: #e3ca9e; /* Or clair */
-  --secondary-color: #1c1c1c; /* Noir profond */
+  --primary-color: #d4af37; /* Or élégant */
+  --primary-dark: #b8860b; /* Or foncé */
+  --primary-light: #f1e5ac; /* Or clair */
+  --secondary-color: #1c2938; /* Bleu profond */
   --tertiary-color: #242424; /* Noir légèrement plus clair pour contraste */
   --text-color: #333333;
   --text-light: #777777;

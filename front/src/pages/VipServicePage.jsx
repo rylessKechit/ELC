@@ -2,6 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import BookingForm from '../components/booking/BookingForm';
 import '../styles/pages/ServicePage.css';
+import VipServiceHero from '../assets/images/vip-service-hero.jpg';
+import vipCustomizedService from '../assets/images/vip-customized-service.jpg';
+import vipConcierge from '../assets/images/vip-concierge.jpg';
+import vipPrivacy from '../assets/images/vip-privacy.png';
 
 // Animation utility hook
 const useIntersectionObserver = (options = {}) => {
@@ -91,7 +95,7 @@ const VipServicePage = () => {
       <div 
         ref={headerRef} 
         className={`service-hero ${headerVisible ? 'animate' : ''}`}
-        style={{ backgroundImage: 'url(/assets/images/vip-service-hero.jpg)' }}
+        style={{ backgroundImage: `url(${VipServiceHero})` }}
       >
         <div className="service-hero-overlay"></div>
         <div className="service-hero-content">
@@ -216,13 +220,13 @@ const VipServicePage = () => {
             </div>
             
             <div className="service-detail-image slide-in-right">
-              <img src="/assets/images/vip-customized-service.jpg" alt="Service personnalisé" loading="lazy" />
+              <img src={vipCustomizedService} alt="Service personnalisé" loading="lazy" />
             </div>
           </div>
           
           <div className="services-grid reverse">
             <div className="service-detail-image slide-in-left">
-              <img src="/assets/images/vip-concierge.jpg" alt="Service conciergerie" loading="lazy" />
+              <img src={vipConcierge} alt="Service conciergerie" loading="lazy" />
             </div>
             
             <div className="service-detail-card slide-in-right">
@@ -271,7 +275,7 @@ const VipServicePage = () => {
             </div>
             
             <div className="service-detail-image slide-in-right">
-              <img src="/assets/images/vip-privacy.jpg" alt="Confidentialité absolue" loading="lazy" />
+              <img src={vipPrivacy} alt="Confidentialité absolue" loading="lazy" />
             </div>
           </div>
         </div>
