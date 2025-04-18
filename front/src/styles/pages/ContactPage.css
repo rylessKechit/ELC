@@ -252,3 +252,39 @@
       gap: 1rem;
     }
   }
+
+  /* Ajoutez ceci à votre fichier ContactPage.css */
+
+.contact-header {
+  background-color: var(--secondary-color);
+  padding: 6rem 2rem;
+  text-align: center;
+  color: var(--white);
+  background-size: cover;
+  background-position: center;
+}
+
+.contact-header h1 {
+  color: var(--white);
+  margin-bottom: 1rem;
+  font-size: 3rem;
+  letter-spacing: 2px;
+}
+
+.contact-header .subtitle {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  font-family: var(--font-tertiary);
+  font-style: italic;
+}
+
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  gap: 3rem;
+}
+
+/* Le reste de votre CSS à adapter... */

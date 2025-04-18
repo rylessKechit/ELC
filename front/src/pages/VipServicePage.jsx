@@ -6,6 +6,10 @@ import VipServiceHero from '../assets/images/vip-service-hero.jpg';
 import vipCustomizedService from '../assets/images/vip-customized-service.jpg';
 import vipConcierge from '../assets/images/vip-concierge.jpg';
 import vipPrivacy from '../assets/images/vip-privacy.png';
+import mercedesClassS from '../assets/images/mercedes-classe-s.png';
+import bmw7Series from '../assets/images/bmw-7-series.png';
+import mercedesClassV from '../assets/images/mercedes-v-class.png';
+import vipExperienceCollage from '../assets/images/vip-experience-collage.jpg';
 
 // Animation utility hook
 const useIntersectionObserver = (options = {}) => {
@@ -62,7 +66,7 @@ const VipServicePage = () => {
         'Tablettes arrière connectées',
         'Minibar personnalisé'
       ],
-      image: '/assets/images/mercedes-s-class.jpg'
+      image: mercedesClassS
     },
     {
       name: 'BMW Série 7',
@@ -74,7 +78,7 @@ const VipServicePage = () => {
         'Isolation phonique renforcée',
         'Système de massage 8 programmes'
       ],
-      image: '/assets/images/bmw-7-series.jpg'
+      image: bmw7Series
     },
     {
       name: 'Mercedes-Benz Classe V VIP',
@@ -86,7 +90,7 @@ const VipServicePage = () => {
         'Wifi haut débit dédié',
         'Séparation chauffeur avec interphone'
       ],
-      image: '/assets/images/mercedes-v-class.jpg'
+      image: mercedesClassV
     }
   ];
 
@@ -307,53 +311,6 @@ const VipServicePage = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </div>
-      
-      <div className="vip-experience-section">
-        <div className="container">
-          <div className="experience-content">
-            <div className="experience-image">
-              <img src="/assets/images/vip-experience-collage.jpg" alt="Expérience VIP" loading="lazy" />
-            </div>
-            <div className="experience-text">
-              <h2>L'EXPÉRIENCE VIP</h2>
-              <p>
-                Chaque aspect de notre service VIP est méticuleusement conçu pour créer un moment d'exception. 
-                Dès votre première interaction avec nous, vous ressentirez la différence d'un service véritablement premium :
-              </p>
-              <ul className="experience-features">
-                <li>
-                  <span className="step-number">01</span>
-                  <div className="step-content">
-                    <h4>Coordination préalable</h4>
-                    <p>Un concierge dédié prépare votre trajet selon vos préférences exactes</p>
-                  </div>
-                </li>
-                <li>
-                  <span className="step-number">02</span>
-                  <div className="step-content">
-                    <h4>Accueil personnalisé</h4>
-                    <p>Votre chauffeur vous accueille par votre nom et vous guide vers votre véhicule</p>
-                  </div>
-                </li>
-                <li>
-                  <span className="step-number">03</span>
-                  <div className="step-content">
-                    <h4>Environnement sur mesure</h4>
-                    <p>Ambiance parfaite dès votre entrée dans le véhicule : température, musique, rafraîchissements</p>
-                  </div>
-                </li>
-                <li>
-                  <span className="step-number">04</span>
-                  <div className="step-content">
-                    <h4>Voyage d'exception</h4>
-                    <p>Service attentif mais discret, confort inégalé et attention constante à vos besoins</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
       </div>

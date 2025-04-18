@@ -2,6 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import BookingForm from '../components/booking/BookingForm';
 import '../styles/pages/ServicePage.css';
+import businessTravel from '../assets/images/business-travel.jpg';
+import airportTransferBusiness from '../assets/images/airport-transfer-business.jpg';
+import businessRoadshow from '../assets/images/business-roadshow.jpg';
+import corporateSolution from '../assets/images/corporate-solution.jpg';
 
 // Animation utility hook
 const useIntersectionObserver = (options = {}) => {
@@ -50,7 +54,7 @@ const BusinessServicePage = () => {
       <div 
         ref={headerRef} 
         className={`service-hero ${headerVisible ? 'animate' : ''}`}
-        style={{ backgroundImage: 'url(/assets/images/business-travel.jpg)' }}
+        style={{ backgroundImage: `url(${businessTravel})` }}
       >
         <div className="service-hero-overlay"></div>
         <div className="service-hero-content">
@@ -173,13 +177,13 @@ const BusinessServicePage = () => {
             </div>
             
             <div className="service-detail-image slide-in-right">
-              <img src="/assets/images/airport-transfer-business.jpg" alt="Transfert aéroport professionnel" loading="lazy" />
+              <img src={airportTransferBusiness} alt="Transfert aéroport professionnel" loading="lazy" />
             </div>
           </div>
           
           <div className="services-grid reverse">
             <div className="service-detail-image slide-in-left">
-              <img src="/assets/images/business-roadshow.jpg" alt="Service Roadshow" loading="lazy" />
+              <img src={businessRoadshow} alt="Service Roadshow" loading="lazy" />
             </div>
             
             <div className="service-detail-card slide-in-right">
@@ -227,7 +231,7 @@ const BusinessServicePage = () => {
             </div>
             
             <div className="service-detail-image slide-in-right">
-              <img src="/assets/images/corporate-solution.jpg" alt="Solutions corporate" loading="lazy" />
+              <img src={corporateSolution} alt="Solutions corporate" loading="lazy" />
             </div>
           </div>
         </div>

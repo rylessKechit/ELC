@@ -67,15 +67,16 @@ const ContactPage = () => {
   return (
     <div className="contact-page">
       <div className="contact-header">
-        <h1>CONTACTEZ TAXI VLB À VERRIÈRES LE BUISSON</h1>
+        <h1>CONTACTEZ ELYSIAN LUXURY CHAUFFEURS</h1>
+        <p className="subtitle">Un service d'exception à votre écoute</p>
       </div>
       
       <div className="contact-container">
         <div className="contact-info">
-          <h2>POSEZ-MOI VOS QUESTIONS</h2>
+          <h2>À VOTRE SERVICE</h2>
           <p>
-            N'hésitez pas à m'adresser vos demandes à l'aide de ce formulaire de contact. 
-            Je vous répondrai dans les plus brefs délais.
+            Nous sommes à votre disposition pour répondre à toutes vos demandes.
+            N'hésitez pas à nous contacter, nous vous répondrons dans les plus brefs délais.
           </p>
           
           <div className="contact-details">
@@ -91,7 +92,7 @@ const ContactPage = () => {
               <i className="fas fa-envelope"></i>
               <div>
                 <h3>EMAIL</h3>
-                <p><a href="mailto:contact@taxivlb.com">contact@taxivlb.com</a></p>
+                <p><a href="mailto:contact@elysian-chauffeurs.com">contact@elysian-chauffeurs.com</a></p>
               </div>
             </div>
             
@@ -99,7 +100,7 @@ const ContactPage = () => {
               <i className="fas fa-map-marker-alt"></i>
               <div>
                 <h3>ADRESSE</h3>
-                <p>Verrières-le-Buisson, 91370</p>
+                <p>Paris et région parisienne</p>
               </div>
             </div>
             
@@ -177,66 +178,6 @@ const ContactPage = () => {
               {isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
             </button>
           </form>
-        </div>
-      </div>
-      
-      <div className="booking-simulator">
-        <h2>SIMULATEUR DE COURSE</h2>
-        <div className="simulator-container">
-          <div className="simulator-form">
-            <div className="form-group">
-              <label>ADRESSE DE DÉPART *</label>
-              <input type="text" placeholder="Entrez l'adresse de départ" />
-            </div>
-            
-            <div className="form-group">
-              <label>ADRESSE D'ARRIVÉE *</label>
-              <input type="text" placeholder="Entrez l'adresse d'arrivée" />
-            </div>
-            
-            <div className="form-group">
-              <label>DATE ET HEURE DE DÉPART *</label>
-              <input type="datetime-local" />
-            </div>
-            
-            <div className="form-row">
-              <div className="form-group">
-                <label>NOMBRE DE PASSAGERS *</label>
-                <select>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                </select>
-              </div>
-              
-              <div className="form-group">
-                <label>NOMBRE DE BAGAGES *</label>
-                <select>
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-              </div>
-            </div>
-            
-            <div className="form-group checkbox">
-              <label>
-                <input type="checkbox" />
-                ALLER RETOUR ?
-              </label>
-            </div>
-            
-            <button className="calculate-button">
-              Calculer le prix
-            </button>
-          </div>
         </div>
       </div>
     </div>

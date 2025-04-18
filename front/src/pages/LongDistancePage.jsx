@@ -2,6 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import BookingForm from '../components/booking/BookingForm';
 import '../styles/pages/ServicePage.css';
+import longDistanceHighway from '../assets/images/long-distance-highway.jpg';
+import intercityTravel from '../assets/images/intercity-travel.jpg';
+import europeanTravel from '../assets/images/european-travel.jpg';
+import touristExcursion from '../assets/images/tourist-excursion.jpg';
 
 // Animation utility hook
 const useIntersectionObserver = (options = {}) => {
@@ -52,7 +56,7 @@ const LongDistancePage = () => {
       <div 
         ref={headerRef} 
         className={`service-hero ${headerVisible ? 'animate' : ''}`}
-        style={{ backgroundImage: 'url(/assets/images/long-distance-highway.jpg)' }}
+        style={{ backgroundImage: `url(${longDistanceHighway})` }}
       >
         <div className="service-hero-overlay"></div>
         <div className="service-hero-content">
@@ -163,13 +167,13 @@ const LongDistancePage = () => {
             </div>
             
             <div className="service-detail-image slide-in-right">
-              <img src="/assets/images/intercity-travel.jpg" alt="Voyage inter-villes" loading="lazy" />
+              <img src={intercityTravel} alt="Voyage inter-villes" loading="lazy" />
             </div>
           </div>
           
           <div className="services-grid reverse">
             <div className="service-detail-image slide-in-left">
-              <img src="/assets/images/european-travel.jpg" alt="Voyage européen" loading="lazy" />
+              <img src={europeanTravel} alt="Voyage européen" loading="lazy" />
             </div>
             
             <div className="service-detail-card slide-in-right">
@@ -219,7 +223,7 @@ const LongDistancePage = () => {
             </div>
             
             <div className="service-detail-image slide-in-right">
-              <img src="/assets/images/tourist-excursion.jpg" alt="Excursion touristique" loading="lazy" />
+              <img src={touristExcursion} alt="Excursion touristique" loading="lazy" />
             </div>
           </div>
         </div>
