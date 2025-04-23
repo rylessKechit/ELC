@@ -23,4 +23,6 @@ router.post('/send-test', whatsappController.sendTest);
 // @access  Admin
 router.get('/qr', whatsappController.getQR);
 
+router.get('/qr-image', whatsappController.getQRImage);
+
 module.exports = router;

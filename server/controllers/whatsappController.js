@@ -98,3 +98,60 @@ exports.getQR = (req, res) => {
     });
   }
 };
+
+exports.getQRImage = (req, res) => {
+  try {
+    const fs = require('fs');
+    const qrcode = require('qrcode');
+    const path = require('path');
+    const qrFilePath = path.join(__dirname, '../public/whatsapp-qr.txt');
+    
+    if (fs.existsSync(qrFilePath)) {
+      const qrText = fs.readFileSync(qrFilePath, 'utf8');
+      
+      // Générer une image QR code
+      qrcode.toDataURL(qrText, (err, url) => {
+        if (err) {
+          return res.status(500).json({
+            success: false,
+            error: 'Erreur lors de la génération de l\'image QR'
+          });
+        }
+        
+        // Envoyer une page HTML avec l'image QR
+        res.send(`
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <title>WhatsApp QR Code</title>
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <style>
+                body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+                img { max-width: 300px; margin: 20px auto; display: block; }
+                .container { max-width: 500px; margin: 0 auto; }
+              </style>
+            </head>
+            <body>
+              <div class="container">
+                <h1>WhatsApp QR Code</h1>
+                <p>Scannez ce QR code avec l'application WhatsApp sur votre téléphone</p>
+                <img src="${url}" alt="WhatsApp QR Code">
+              </div>
+            </body>
+          </html>
+        `);
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        error: 'QR code non disponible'
+      });
+    }
+  } catch (error) {
+    console.error('Erreur lors de la récupération du QR code:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+};
