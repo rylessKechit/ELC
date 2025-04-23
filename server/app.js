@@ -16,6 +16,9 @@ if (!fs.existsSync(whatsappAuthDir)) {
   fs.mkdirSync(whatsappAuthDir, { recursive: true });
 }
 
+// Import de WhatsApp service (pour le démarrage immédiat)
+const whatsappService = require('./services/whatsappService');
+
 // Import routes
 const bookingRoutes = require('./routes/bookingRoutes');
 const priceRoutes = require('./routes/priceRoutes');
@@ -37,7 +40,6 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use((req, res, next) => {
   // Log simple pour vérifier l'état du service WhatsApp
   if (req.path.startsWith('/api/whatsapp')) {
-    const whatsappService = require('./services/whatsappService');
     console.log('État du service WhatsApp:', whatsappService.getStatus());
   }
   next();
@@ -55,7 +57,11 @@ app.get('/healthcheck', (req, res) => {
   res.status(200).json({ 
     status: 'ok',
     message: 'Le serveur est opérationnel',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    whatsapp: {
+      status: whatsappService.getStatus().status,
+      isReady: whatsappService.isClientReady()
+    }
   });
 });
 
