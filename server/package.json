@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "postinstall": "npx puppeteer browsers install chrome",
     "railway:postdeploy": "npm run clean-whatsapp-data || true",
     "clean-whatsapp-data": "rm -rf .wwebjs_* || true"
   },
