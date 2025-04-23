@@ -1,6 +1,7 @@
 // server/routes/whatsappRoutes.js
 const express = require('express');
 const router = express.Router();
+const whatsappService = require('../services/whatsappService');
 
 // @route   GET /api/whatsapp/status
 // @desc    Obtenir le statut de la connexion WhatsApp
@@ -57,6 +58,35 @@ router.post('/send-test', async (req, res) => {
       success: result.success,
       data: result
     });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// @route   GET /api/whatsapp/qr
+// @desc    Obtenir le QR code actuel
+// @access  Admin
+router.get('/qr', (req, res) => {
+  try {
+    const fs = require('fs');
+    const path = require('path');
+    const qrFilePath = path.join(__dirname, '../public/whatsapp-qr.txt');
+    
+    if (fs.existsSync(qrFilePath)) {
+      const qrCode = fs.readFileSync(qrFilePath, 'utf8');
+      res.status(200).json({
+        success: true,
+        data: qrCode
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        error: 'QR code non disponible'
+      });
+    }
   } catch (error) {
     res.status(500).json({
       success: false,

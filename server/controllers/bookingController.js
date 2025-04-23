@@ -3,6 +3,7 @@ const Booking = require('../models/Booking');
 const GoogleMapsService = require('../services/googleMapsService');
 const nodemailer = require('nodemailer');
 const config = require('../config/environment');
+const whatsappService = require('../services/whatsappService');
 
 // @desc    Create a new booking
 // @route   POST /api/bookings
@@ -140,9 +141,15 @@ exports.createBooking = asyncHandler(async (req, res) => {
       `,
     };
 
-    // Send emails
-    await transporter.sendMail(driverMailOptions);
-    await transporter.sendMail(customerMailOptions);
+    try {
+      // Send emails
+      await transporter.sendMail(driverMailOptions);
+      await transporter.sendMail(customerMailOptions);
+      console.log('Emails de confirmation envoyés');
+    } catch (emailError) {
+      console.error('Erreur lors de l\'envoi des emails:', emailError);
+      // Ne pas échouer la réponse si l'envoi d'emails échoue
+    }
 
     // Envoyer une notification WhatsApp
     if (config.whatsappNotificationsEnabled) {
@@ -184,8 +191,8 @@ ${customerInfo.specialRequests ? `*Demandes spéciales:* ${customerInfo.specialR
         } else {
           console.warn(`Service WhatsApp non prêt (${whatsappStatus.status}). Notification non envoyée.`);
         }
-      } catch (error) {
-        console.error('Erreur lors de l\'envoi de la notification WhatsApp:', error);
+      } catch (whatsappError) {
+        console.error('Erreur lors de l\'envoi de la notification WhatsApp:', whatsappError);
         // Ne pas échouer la réponse si la notification WhatsApp échoue
       }
     }
